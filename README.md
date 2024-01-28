@@ -7,7 +7,6 @@ An interior design portfolio website created with React js.
 - Styled components
 - Contentful (CMS)
 
-
 ## Available Scripts
 
 In the project directory, you can run:

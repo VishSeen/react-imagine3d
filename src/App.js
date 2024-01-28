@@ -1,23 +1,21 @@
+import React from "react";
 import "./styles/global.css";
+import PROJECT_PAGE_QUERY from './gql-query/ProjectPageQuery'
+import { useQuery } from '@apollo/client';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Hello React</h1>
+            </header>
+
+				{loading ? <p>Loading...</p> : data?.projectPage.title}
+        </div>
+    );
 }
 
 export default App;
