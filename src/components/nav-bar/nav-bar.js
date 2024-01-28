@@ -10,6 +10,41 @@ const NavBar = ({isOpened}) => {
 
             <span>NAVIGATION</span>
 
+            <div className="nav-contents">
+                <nav className="menu">
+                    <ul>
+                        <li>
+                            <a>Home</a>
+                        </li>
+
+                        <li>
+                            <a>About</a>
+                        </li>
+
+                        <li>
+                            <a>Projects</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <nav className="socials">
+                    <h3>Socials</h3>
+                    <ul>
+                        <li>
+                            <a>Facebook</a>
+                        </li>
+
+                        <li>
+                            <a>Instagram</a>
+                        </li>
+
+                        <li>
+                            <a>Behance</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
         </StyledNav>
     )
 }
