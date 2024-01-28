@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/global.css";
 import PROJECT_PAGE_QUERY from './gql-query/ProjectPageQuery'
 import { useQuery } from '@apollo/client';
 import config from './config.json'
 import logo from './assets/logo/white.png'
 import './styles/test.css'
+import NavBar from "./components/nav-bar/nav-bar";
 
 
 function App() {
 	const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
+	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
 		<div className="App">
@@ -17,12 +19,15 @@ function App() {
 					<img src={logo} style={{ width: '125px' }} />
 				</div>
 
-				<p>
+				<div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+					Menu
 					<span className={config.icons}>
 						menu
 					</span>
-				</p>
+				</div>
 			</div>
+
+			<NavBar isOpened={menuOpen} />
 
 			{loading ? <p>Loading...</p> : data?.projectPage.title}
 

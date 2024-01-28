@@ -1,9 +1,10 @@
+import React from "react";
 import StyledNav from "./style"
 
 
-const NavBar = () => {
+const NavBar = ({isOpened}) => {
     return(
-        <StyledNav className="nav-bar">
+        <StyledNav className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
             <img />
 
 
@@ -12,3 +13,6 @@ const NavBar = () => {
         </StyledNav>
     )
 }
+
+
+export default NavBar;

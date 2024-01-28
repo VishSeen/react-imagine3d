@@ -3,3 +3,17 @@
     align-items: center;
     justify-content: space-between;
 }
+
+
+.menu-icon {
+    display: flex;
+    align-items: center;
+    font-family: "Syne", sans-serif;
+}
+.menu-icon:hover {
+    cursor: pointer;
+}
+
+.menu-icon span {
+    margin-left: 10px;
+}
