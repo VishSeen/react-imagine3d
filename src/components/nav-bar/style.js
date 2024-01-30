@@ -36,6 +36,7 @@ display: none;
 .nav-contents {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     z-index: 3;
     margin-bottom: 2rem;
     width: 100%;
@@ -88,12 +89,42 @@ display: none;
 
 
 .nav-contents .socials {
+    text-align: right;
+
+    ul {
+        margin-top: 20px;
+        li {
+            padding: 5px 0;
+            position: relative;
+        }
+    }
+
     span {
-        font-size: 20px;
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 25px;
     }
 
     a {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        font-size: 20px;
         color: #fff;
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 4px;
+            width: 0;
+            height: 1px;
+            background-color: #ffffff;
+            transition: 0.3s all ease-in-out;
+        }
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
     }
 }
 `;

@@ -32,7 +32,7 @@ const NavBar = ({isOpened}) => {
                 </nav>
 
                 <nav className="socials">
-                    <span>Socials</span>
+                    <span>Social Links</span>
                     <ul>
                         <li>
                             <a href="#">Facebook</a>
