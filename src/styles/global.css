@@ -82,3 +82,12 @@ nav ul li a {
 .top-bar .menu-txt .txt-toggle {
     transform: translateY(100%);
 }
+
+
+footer {
+        font-family: 'Syne', sans-serif;
+        font-weight: 100;
+        font-size: 14px;
+        letter-spacing: 0.4px;
+        color: #353535;
+}

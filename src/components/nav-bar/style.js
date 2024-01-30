@@ -36,7 +36,7 @@ display: none;
 .nav-contents {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     z-index: 3;
     margin-bottom: 2rem;
     width: 100%;
@@ -90,9 +90,10 @@ display: none;
 
 .nav-contents .socials {
     text-align: right;
-
+    margin-bottom: 30px;
     ul {
         margin-top: 20px;
+        margin-bottom: 41px;
         li {
             padding: 5px 0;
             position: relative;

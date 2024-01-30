@@ -46,8 +46,13 @@ const NavBar = ({isOpened}) => {
                             <a href="#">Behance</a>
                         </li>
                     </ul>
+
+                    <footer>
+                        © 2023 Vishroy Seenarain. All rights reserved.
+                    </footer>
                 </nav>
             </div>
+
 
         </StyledNav>
     )
