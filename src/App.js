@@ -20,7 +20,7 @@ function App() {
 				</div>
 
 				<div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-					<div className="menu-txt">
+					<div className={`menu-txt ${menuOpen ? 'opened' : ''}`}>
 						<span className="txt-menu">Menu</span>
 						<span className="txt-toggle">
 							{menuOpen ? 'Close' : 'Open'}

@@ -53,6 +53,14 @@ nav ul li a {
     margin-top: 10px;
 }
 
+.top-bar .menu-txt.opened .txt-menu {
+    transform: translateY(-100%);
+}
+
+.top-bar .menu-txt.opened .txt-toggle {
+    transform: translateY(0);
+}
+
 .top-bar .menu-icon:hover .txt-toggle {
     transform: translateY(0);
 }
