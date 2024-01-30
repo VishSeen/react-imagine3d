@@ -106,6 +106,7 @@ display: none;
     }
 
     a {
+        position: relative;
         font-family: 'Poppins', sans-serif;
         font-weight: 300;
         font-size: 20px;
@@ -114,10 +115,10 @@ display: none;
             content: "";
             position: absolute;
             right: 0;
-            bottom: 4px;
+            bottom: 0;
             width: 0;
             height: 1px;
-            background-color: #ffffff;
+            background-color: #fd5a1e;
             transition: 0.3s all ease-in-out;
         }
         &:hover {
