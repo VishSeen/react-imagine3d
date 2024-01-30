@@ -20,21 +20,21 @@ function App() {
 				</div>
 
 				<div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-					Menu
+					{menuOpen ? 'Close' : 'Menu'}
 					<span className={config.icons}>
-						menu
+						{ menuOpen? 'close': 'menu' }
 					</span>
 				</div>
 			</div>
 
 			<NavBar isOpened={menuOpen} />
 
-			{loading ? <p>Loading...</p> : data?.projectPage.title}
+			{/* {loading ? <p>Loading...</p> : data?.projectPage.title} */}
 
 
-			<footer>
+			{/* <footer>
 				© 2023 Vishroy Seenarain. All rights reserved.
-			</footer>
+			</footer> */}
 		</div>
 	);
 }

@@ -7,39 +7,43 @@ const NavBar = ({isOpened}) => {
         <StyledNav className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
             <img />
 
-
-            <span>NAVIGATION</span>
+            <div className="title">
+                <span>EXPLORE</span>
+            </div>
 
             <div className="nav-contents">
                 <nav className="menu">
                     <ul>
                         <li>
+                            <span>01</span>
                             <a>Home</a>
                         </li>
 
                         <li>
-                            <a>About</a>
+                            <span>02</span>
+                            <a>Projects</a>
                         </li>
 
                         <li>
-                            <a>Projects</a>
+                            <span>03</span>
+                            <a>About us</a>
                         </li>
                     </ul>
                 </nav>
 
                 <nav className="socials">
-                    <h3>Socials</h3>
+                    <span>Socials</span>
                     <ul>
                         <li>
-                            <a>Facebook</a>
+                            <a href="#">Facebook</a>
                         </li>
 
                         <li>
-                            <a>Instagram</a>
+                            <a href="#">Instagram</a>
                         </li>
 
                         <li>
-                            <a>Behance</a>
+                            <a href="#">Behance</a>
                         </li>
                     </ul>
                 </nav>
