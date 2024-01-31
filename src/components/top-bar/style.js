@@ -20,7 +20,6 @@ const StyledTopBar = styled.div`
 
         &:hover {
             cursor: pointer;
-
             .menu-txt .txt-menu {
                 transform: translateY(-100%);
             }
@@ -37,12 +36,12 @@ const StyledTopBar = styled.div`
             overflow: hidden;
             margin-top: 9px;
             margin-right: 6px;
-             &.opened {
-                .menu-txt .txt-menu {
+            &.opened {
+                &.menu-txt .txt-menu {
                     transform: translateY(-100%);
                 }
 
-                .menu-txt .txt-toggle {
+                &.menu-txt .txt-toggle {
                     transform: translateY(0);
                 }
             }
@@ -60,13 +59,6 @@ const StyledTopBar = styled.div`
                 transition: 0.2s all ease-in-out;
             }
         }
-    }
-
-
-    .top-bar__menu-btn .menu-txt {
-
-
-
     }
 `;
 

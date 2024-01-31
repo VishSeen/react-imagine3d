@@ -5,8 +5,6 @@ import config from '../../config.json'
 
 
 const TopBar = ({ isOpened, onOpenMenu }) => {
-    const [menuOpen, setMenuOpen] = useState(isOpened);
-
     return(
         <StyledTopBar className="top-bar">
             <div className="top-bar__logo">
