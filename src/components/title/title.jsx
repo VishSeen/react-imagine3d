@@ -1,13 +1,11 @@
 import React from 'react';
 import StyledTitle from './style';
 
-const Title = ({ text }) => {
+const Title = ({ className, text }) => {
   return (
-    <>
-      <StyledTitle className="title">
-        <span>{text}</span>
-      </StyledTitle>
-    </>
+    <StyledTitle className={className}>
+      <span>{text}</span>
+    </StyledTitle>
   );
 };
 

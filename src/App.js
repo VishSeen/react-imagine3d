@@ -13,7 +13,7 @@ import './styles/global.css';
 import './styles/test.css';
 
 import HomePage from './pages/homepage/homepage';
-import Projects from './pages/projects';
+import Projects from './pages/projects/projects';
 
 function App() {
   const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
@@ -27,9 +27,11 @@ function App() {
         onOpenMenu={menuBtnClick}
       />
 
-      <NavBar isOpened={menuOpen} />
-
       <Router>
+        <NavBar
+          isOpened={menuOpen}
+          onOpenMenu={menuBtnClick}
+        />
         <Routes>
           <Route
             path="/"

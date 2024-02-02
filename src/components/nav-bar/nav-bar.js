@@ -1,8 +1,9 @@
 import React from 'react';
+import NavBarItem from '../nav-bar-item/nav-bar-item';
 import Title from '../title/title';
 import StyledNav from './style';
 
-const NavBar = ({ isOpened }) => {
+const NavBar = ({ isOpened, onOpenMenu }) => {
   return (
     <StyledNav className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
       <img />
@@ -12,20 +13,26 @@ const NavBar = ({ isOpened }) => {
       <div className="nav-contents">
         <nav className="menu">
           <ul>
-            <li>
-              <span>01</span>
-              <a>Home</a>
-            </li>
+            <NavBarItem
+              index="01"
+              title="Home"
+              slug="/"
+              onOpenMenu={onOpenMenu}
+            />
 
-            <li>
-              <span>02</span>
-              <a>Projects</a>
-            </li>
+            <NavBarItem
+              index="02"
+              title="Projects"
+              slug="/projects"
+              onOpenMenu={onOpenMenu}
+            />
 
-            <li>
-              <span>03</span>
-              <a>About us</a>
-            </li>
+            <NavBarItem
+              index="03"
+              title="About Us"
+              slug="/about-us"
+              onOpenMenu={onOpenMenu}
+            />
           </ul>
         </nav>
 

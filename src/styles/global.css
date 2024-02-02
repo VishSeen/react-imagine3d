@@ -12,7 +12,7 @@ font-family: 'Nanum Myeongjo', serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -22,72 +22,69 @@ body {
 }
 
 nav ul li {
-    list-style: none;
+  list-style: none;
 }
 nav ul li:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 nav ul li a {
-    text-decoration: none;
-    font-family: "Syne", sans-serif;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+  color: #ffffff;
 }
 
 .material-symbols-rounded {
-  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24;
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
 }
 
-
-
 .top-bar {
-    position: fixed;
-    top: 2rem;
-    left: 2rem;
-    right: 2rem;
-    z-index: 99;
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  z-index: 99;
 }
 
 .top-bar .menu-txt {
-    display: grid;
-    grid-template-areas: "text";
-    overflow: hidden;
-    margin-top: 10px;
+  display: grid;
+  grid-template-areas: 'text';
+  overflow: hidden;
+  margin-top: 10px;
 }
 
 .top-bar .menu-txt.opened .txt-menu {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 .top-bar .menu-txt.opened .txt-toggle {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .top-bar .menu-icon:hover .txt-toggle {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 .top-bar .menu-icon:hover .txt-menu {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
-
 .top-bar .menu-txt span {
-    grid-area: text;
-    transition: 0.2s all ease-in-out;
+  grid-area: text;
+  transition: 0.2s all ease-in-out;
 }
 
 .top-bar .menu-txt .txt-menu {
-    transform: translateY(0);
-    margin-bottom: 10px;
+  transform: translateY(0);
+  margin-bottom: 10px;
 }
 
 .top-bar .menu-txt .txt-toggle {
-    transform: translateY(100%);
+  transform: translateY(100%);
 }
 
-
 footer {
-        font-family: 'Syne', sans-serif;
-        font-weight: 100;
-        font-size: 14px;
-        letter-spacing: 0.4px;
-        color: #353535;
+  font-family: 'Syne', sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  color: #353535;
 }
