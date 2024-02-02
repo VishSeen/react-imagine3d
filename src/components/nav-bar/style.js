@@ -84,6 +84,7 @@ display: none;
         font-weight: 600;
         font-size: 8rem;
         transition: 0.3s all ease-in-out;
+        text-align: center;
     }
 }
 
