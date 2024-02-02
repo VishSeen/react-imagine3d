@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import logo from './assets/logo/white.png';
+import HeroHeader from './components/hero-banner/hero-header';
 import NavBar from './components/nav-bar/nav-bar';
 import TopBar from './components/top-bar/top-bar';
+
 import config from './config.json';
 
 import PROJECT_PAGE_QUERY from './gql-query/ProjectPageQuery';
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <HeroHeader />
       <TopBar
         isOpened={menuOpen}
         onOpenMenu={menuBtnClick}
