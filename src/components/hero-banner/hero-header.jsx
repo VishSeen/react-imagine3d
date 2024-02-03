@@ -10,31 +10,26 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
       <StyledHeroHeader className="hero-header">
         <CarouselProvider
           naturalSlideWidth={100}
-          naturalSlideHeight={125}
+          naturalSlideHeight={75}
           totalSlides={2}
-        >
-          <Slider>
-            <Slide index={0}>
-              <figure>
-                <picture>
-                  <img src={carouselImage} />
-                </picture>
-                <figcaption>This is slide one</figcaption>
-              </figure>
+          visibleSlides={1}
+          isPlaying
+          infinite
+          isIntrinsicHeight
+         >
+          <Slider className="carousel__slider">
+            <Slide index={0} className="carousel__slider__slides">
+              <picture>
+                <img src={carouselImage} />
+              </picture>
             </Slide>
 
             <Slide index={1}>
-              <figure>
-                <picture>
-                  <img src={carouselImage} />
-                </picture>
-                <figcaption>This is slide two</figcaption>
-              </figure>
+              <picture>
+                <img src={carouselImage} />
+              </picture>
             </Slide>
           </Slider>
-
-          <ButtonBack>Back</ButtonBack>
-          <ButtonNext>Next</ButtonNext>
         </CarouselProvider>
       </StyledHeroHeader>
     );
