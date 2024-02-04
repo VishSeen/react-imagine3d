@@ -43,6 +43,14 @@ const StyledHeroHeader = styled.div`
         position: relative;
         display: flex;
     }
+
+
+    .bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 `;
 
 export default StyledHeroHeader;

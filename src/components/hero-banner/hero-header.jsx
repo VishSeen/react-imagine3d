@@ -64,7 +64,12 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
           />
         </Slider>
 
-        <BottomBar />
+        <BottomBar
+          emailTxt="Get in touch"
+          emailIcon="mail"
+          socialsTxt="Follow"
+          socialsIcon="share"
+          />
       </StyledHeroHeader>
     );
   }
