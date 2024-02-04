@@ -1,36 +1,70 @@
 import React from "react";
 import StyledHeroHeader from "./style";
-import carouselImage from '../../assets/LIVING ROOM - FLIP.jpg'
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import BottomBar from "./bottom-bar/bottom-bar";
+
+import img1 from '../../assets/img1.jpg';
+import img2 from '../../assets/img2.jpg';
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
+const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
+    return (
+      <a href="">
+        <section className="slide-content">
+          <div className="text">
+            <div className="category">
+              EXTERIOR
+            </div>
+            <div className="title">
+              <p>
+                Azuri Life ltd
+              </p>
+            </div>
+          </div>
+
+          <div className="image">
+            <picture>
+              <img src={img1} />
+            </picture>
+          </div>
+        </section>
+      </a>
+    )
+  }
 
 
   const HeroHeader = () => {
+    var settings = {
+      dots: false,
+      infinite: true,
+      speed: 2000,
+      autoplay: true,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
     return (
       <StyledHeroHeader className="hero-header">
-        <CarouselProvider
-          naturalSlideWidth={100}
-          naturalSlideHeight={75}
-          totalSlides={2}
-          visibleSlides={1}
-          isPlaying
-          infinite
-          isIntrinsicHeight
-         >
-          <Slider className="carousel__slider">
-            <Slide index={0} className="carousel__slider__slides">
-              <picture>
-                <img src={carouselImage} />
-              </picture>
-            </Slide>
+        <Slider {...settings}>
+          <FullWidthSlide
+            link='#'
+            title="SBI Mauritius"
+            category={'exterior'}
+            image={img1}
+          />
 
-            <Slide index={1}>
-              <picture>
-                <img src={carouselImage} />
-              </picture>
-            </Slide>
-          </Slider>
-        </CarouselProvider>
+          <FullWidthSlide
+            link='#'
+            title="Mauritius Corporation Bank"
+            category={'exterior'}
+            image={img2}
+          />
+        </Slider>
+
+        <BottomBar />
       </StyledHeroHeader>
     );
   }
