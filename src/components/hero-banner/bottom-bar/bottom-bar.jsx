@@ -1,6 +1,7 @@
 import React from "react"
 import StyledBottomBar from "./style";
 import config from '../../../config.json';
+import Controls from "../controls/controls";
 
 const BottomBar = ({
     emailTxt,
@@ -8,7 +9,9 @@ const BottomBar = ({
     emailIcon,
     socialsTxt,
     socialsIcon,
-    socials
+    socials,
+    arrowRightControl,
+    arrowLeftControl
 }) => {
     return (
         <StyledBottomBar className="bottom-bar">
@@ -28,6 +31,11 @@ const BottomBar = ({
                         </span>
                     </div>
                 </a>
+            </div>
+
+
+            <div className="bottom-bar__controls">
+                <Controls />
             </div>
 
 

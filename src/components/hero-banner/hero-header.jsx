@@ -12,26 +12,27 @@ import "slick-carousel/slick/slick-theme.css";
 
 const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
     return (
-      <a href="">
-        <section className="slide-content">
+      <section className="slide-content">
+        <a href={link}>
           <div className="text">
             <div className="category">
-              EXTERIOR
+              {category}
             </div>
             <div className="title">
               <p>
-                Azuri Life ltd
+                {title}
               </p>
             </div>
           </div>
+        </a>
 
-          <div className="image">
-            <picture>
-              <img src={img1} />
-            </picture>
-          </div>
-        </section>
-      </a>
+        <div className="image">
+          <picture>
+            {/* <img src={image} media=""/> */}
+            <img src={image} />
+          </picture>
+        </div>
+      </section>
     )
   }
 
@@ -40,10 +41,11 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
     var settings = {
       dots: false,
       infinite: true,
-      speed: 2000,
+      speed: 3000,
       autoplay: true,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      swipeToSlide: true,
     };
 
     return (
@@ -51,16 +53,16 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
         <Slider {...settings}>
           <FullWidthSlide
             link='#'
-            title="SBI Mauritius"
+            title="Mauritius Corporation Bank"
             category={'exterior'}
-            image={img1}
+            image={img2}
           />
 
           <FullWidthSlide
             link='#'
-            title="Mauritius Corporation Bank"
+            title="SBI Mauritius"
             category={'exterior'}
-            image={img2}
+            image={img1}
           />
         </Slider>
 

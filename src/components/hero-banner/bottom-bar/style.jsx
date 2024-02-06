@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 
 const StyledBottomBar = styled.div`
+	position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     padding: 1rem 2rem;
     display: flex;
@@ -52,6 +56,11 @@ const StyledBottomBar = styled.div`
             }
         }
     }
+
+
+	.bottom-bar__controls {
+		width: 15rem;
+	}
 
 
     .bottom-bar__socials {

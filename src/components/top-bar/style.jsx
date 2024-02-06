@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const StyledTopBar = styled.div`
+const StyledTopBar = styled.header`
     position: fixed;
     top: 2rem;
     left: 2rem;
