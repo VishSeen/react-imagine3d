@@ -1,6 +1,7 @@
 import React from "react";
 import StyledTopBar from "./style";
-import logo from '../../assets/logo/white.png';
+import Logo from '../logo/logo';
+import img from '../../assets/logo/white.png';
 import config from '../../config.json'
 
 
@@ -8,7 +9,7 @@ const TopBar = ({ isOpened, onOpenMenu }) => {
     return(
         <StyledTopBar className="top-bar">
             <div className="top-bar__logo">
-                <img src={logo} style={{ width: '125px' }} />
+                <Logo img={img} link="/"/>
             </div>
 
             <div className="top-bar__menu-btn" onClick={onOpenMenu}>
