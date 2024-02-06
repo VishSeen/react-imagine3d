@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledTitle = styled.div`
-  position: absolute;
+  position: fixed;
   top: 8rem;
   z-index: 0;
   left: 0;
@@ -11,7 +11,7 @@ const StyledTitle = styled.div`
   text-transform: uppercase;
   span {
     text-align: center;
-    font-size: 237px;
+    font-size: 175px;
     font-weight: 600;
     color: #161616;
   }
