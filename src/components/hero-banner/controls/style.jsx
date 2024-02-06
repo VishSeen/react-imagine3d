@@ -8,6 +8,13 @@ const StyledControls = styled.div`
 
     .arrow {
 		display: flex;
+        padding: 10px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        span {
+            color: #ffffff;
+        }
 	}
 
 	.progress-bar {

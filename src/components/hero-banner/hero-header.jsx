@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import StyledHeroHeader from "./style";
 import BottomBar from "./bottom-bar/bottom-bar";
 
@@ -38,19 +38,28 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
 
 
   const HeroHeader = () => {
+    let sliderRef = useRef('null');
+    const sliderNext = () => sliderRef.slickNext();
+    const sliderPrev = () => sliderRef.slickPrev();
+
+
     var settings = {
       dots: false,
       infinite: true,
-      speed: 3000,
+      speed: 1000,
       autoplay: true,
       slidesToShow: 1,
       slidesToScroll: 1,
       swipeToSlide: true,
     };
 
+
     return (
       <StyledHeroHeader className="hero-header">
-        <Slider {...settings}>
+            <Slider {...settings}
+            ref={slider => {
+                sliderRef = slider;
+            }}>
           <FullWidthSlide
             link='#'
             title="Mauritius Corporation Bank"
@@ -71,6 +80,8 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
           emailIcon="mail"
           socialsTxt="Follow"
           socialsIcon="share"
+          arrowLeftClick={sliderPrev}
+          arrowRightClick={sliderNext}
           />
       </StyledHeroHeader>
     );

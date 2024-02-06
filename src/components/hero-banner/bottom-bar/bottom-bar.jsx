@@ -10,8 +10,8 @@ const BottomBar = ({
     socialsTxt,
     socialsIcon,
     socials,
-    arrowRightControl,
-    arrowLeftControl
+    arrowRightClick,
+    arrowLeftClick
 }) => {
     return (
         <StyledBottomBar className="bottom-bar">
@@ -35,7 +35,7 @@ const BottomBar = ({
 
 
             <div className="bottom-bar__controls">
-                <Controls />
+                <Controls arrowLeftClick={arrowLeftClick} arrowRightClick={arrowRightClick}/>
             </div>
 
 
