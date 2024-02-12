@@ -16,6 +16,7 @@ import './styles/test.css';
 
 import HomePage from './pages/homepage/homepage';
 import Projects from './pages/projects/projects';
+import AboutUs from './pages/about-us/about-us';
 
 function App() {
   const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
@@ -42,6 +43,10 @@ function App() {
           <Route
             path="/projects"
             element={<Projects />}
+          />
+          <Route
+            path='/about-us'
+            element={<AboutUs />}
           />
         </Routes>
       </Router>
