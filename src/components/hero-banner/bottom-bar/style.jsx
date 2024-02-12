@@ -59,7 +59,7 @@ const StyledBottomBar = styled.div`
 
 
 	.bottom-bar__controls {
-		width: 20rem;
+		width: 25rem;
 	}
 
 

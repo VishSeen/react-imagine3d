@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import StyledHeroHeader from "./style";
 import BottomBar from "./bottom-bar/bottom-bar";
 
@@ -38,28 +38,34 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
 
 
   const HeroHeader = () => {
+    const [currentSlide, setCurrentSlide] = useState(1);
     let sliderRef = useRef('null');
+
+    const totalSlides = 5;
+
     const sliderNext = () => sliderRef.slickNext();
     const sliderPrev = () => sliderRef.slickPrev();
-
+    const slideChanged = () => setCurrentSlide(prevValue => prevValue < 5 ? prevValue + 1 : 1)
 
     var settings = {
       dots: false,
       infinite: true,
       speed: 1000,
-      autoplay: true,
+      autoplay: false,
       slidesToShow: 1,
       slidesToScroll: 1,
-      swipeToSlide: true,
     };
 
 
     return (
       <StyledHeroHeader className="hero-header">
-            <Slider {...settings}
+        <Slider
+            {...settings}
             ref={slider => {
                 sliderRef = slider;
-            }}>
+            }}
+            afterChange={slideChanged}
+        >
           <FullWidthSlide
             link='#'
             title="Mauritius Corporation Bank"
@@ -70,18 +76,20 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
           <FullWidthSlide
             link='#'
             title="SBI Mauritius"
-            category={'exterior'}
+            category={'interior'}
             image={img1}
           />
         </Slider>
 
         <BottomBar
-          emailTxt="Get in touch"
-          emailIcon="mail"
-          socialsTxt="Follow"
-          socialsIcon="share"
-          arrowLeftClick={sliderPrev}
-          arrowRightClick={sliderNext}
+            emailTxt="Get in touch"
+            emailIcon="mail"
+            socialsTxt="Follow"
+            socialsIcon="share"
+            btnPrev={sliderPrev}
+            btnNext={sliderNext}
+            currentSlide={`0${currentSlide}`}
+            totalSlides={`0${totalSlides}`}
           />
       </StyledHeroHeader>
     );

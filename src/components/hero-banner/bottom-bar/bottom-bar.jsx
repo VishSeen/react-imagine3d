@@ -1,7 +1,7 @@
 import React from "react"
 import StyledBottomBar from "./style";
 import config from '../../../config.json';
-import Controls from "../controls/controls";
+import Controls from "../../carousel/controls/controls";
 
 const BottomBar = ({
     emailTxt,
@@ -10,8 +10,10 @@ const BottomBar = ({
     socialsTxt,
     socialsIcon,
     socials,
-    arrowRightClick,
-    arrowLeftClick
+    btnNext,
+    btnPrev,
+    currentSlide,
+    totalSlides
 }) => {
     return (
         <StyledBottomBar className="bottom-bar">
@@ -35,7 +37,7 @@ const BottomBar = ({
 
 
             <div className="bottom-bar__controls">
-                <Controls arrowLeftClick={arrowLeftClick} arrowRightClick={arrowRightClick}/>
+                <Controls btnPrev={btnPrev} btnNext={btnNext} totalSlides={totalSlides} currentSlide={currentSlide} />
             </div>
 
 
