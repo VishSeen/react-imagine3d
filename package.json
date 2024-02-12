@@ -32,7 +32,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://vishseen.github.io/react-imagine3d",
+  "homepage": "https://vishseen.github.io",
   "browserslist": {
     "production": [
       ">0.2%",
