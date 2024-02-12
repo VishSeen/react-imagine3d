@@ -1,4 +1,6 @@
 import React from 'react';
+import img1 from '../../assets/img1.jpg';
+import img2 from '../../assets/img2.jpg';
 import NavBarItem from '../../components/nav-bar-item/nav-bar-item';
 import { StyledProjects, StyledTitle } from './style';
 
@@ -6,15 +8,18 @@ import { StyledProjects, StyledTitle } from './style';
 const projectsListItems = [
   {
     title: 'SBI Mauritius Bank',
-    slug: '/'
+    slug: '/',
+    image: img1
   },
   {
     title: 'Azuri Project',
-    slug: '/'
+    slug: '/',
+    image: img2
   },
   {
     title: 'Mauritius Local Bank',
-    slug: '/'
+    slug: '/',
+    image: img1
   }
 ];
 
@@ -30,6 +35,7 @@ const Projects = () => {
                 index={(index + 1).toString().padStart(2, 0)}
                 title={item.title}
                 slug={item.slug}
+                image={item.image}
               />
             ))}
           </ul>
