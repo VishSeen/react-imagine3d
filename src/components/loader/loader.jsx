@@ -6,19 +6,20 @@ import gsap from 'gsap';
 const Loader = ({
     logo,
     texts,
-    loading
+    loader,
+    setLoader
 }) => {
     let introRef = useRef(null)
     let container = useRef(null)
-    var tl = gsap.timeline({ repeat: 30, repeatDelay: 1 });
 
-
+    var tl = gsap.timeline({onComplete: setComplete});
+    const setComplete = () => setLoader(!loader);
 
     useEffect(() => {
         tl.to(container.current, { opacity: 1, duration: 1})
         .fromTo(introRef.current, { opacity: 0 }, { duration: 2, opacity: 1, ease: "power1.out", stagger: 1 })
         .to(introRef.current, {opacity: 0, duration: 1})
-        .to(container.current, { opacity: 0, display: 'none', duration: 1, stagger: 2 })
+        .to(container.current, { opacity: 0, display: 'none', duration: 1, stagger: 2 });
     }, [texts])
     return (
         <StyledLoader ref={container}>

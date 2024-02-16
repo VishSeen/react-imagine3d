@@ -10,6 +10,7 @@ import HOMEPAGE_QUERY from "../../gql-query/HomepageQuery";
 const HomePage = () => {
     const { loading, error, data } = useQuery(HOMEPAGE_QUERY);
     const [texts, setTexts] = useState(null);
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         if (data) {
@@ -19,8 +20,9 @@ const HomePage = () => {
 
   return (
     <StyledHomePage className="homepage">
-        <Loader />
-        <HeroHeader />
+
+          {loader ? <Loader loader={loader} setLoader={setLoader}/> : <HeroHeader />}
+
     </StyledHomePage>
   );
 };
