@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledProjectItem = styled.div`
+  position: relative;
+  margin: 2rem;
+  top: 5rem;
+
   h2 {
     font-family: 'Syne', sans-serif;
   }
 
   .container {
-    margin: 0 2rem;
     padding: 4rem 0;
   }
 
@@ -76,7 +79,6 @@ export const StyledProjectHero = styled.div`
 `;
 
 export const StyledProjectAbout = styled.div`
-  margin: 0 2rem;
   padding: 4rem 0;
   display: flex;
   gap: 3rem;
