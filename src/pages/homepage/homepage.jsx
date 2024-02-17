@@ -8,7 +8,7 @@ import HOMEPAGE_QUERY from "../../gql-query/HomepageQuery";
 
 
 const HomePage = () => {
-    const { loading, error, data } = useQuery(HOMEPAGE_QUERY);
+    const { data } = useQuery(HOMEPAGE_QUERY);
     const [texts, setTexts] = useState(null);
     const [loader, setLoader] = useState(true);
 
@@ -20,9 +20,11 @@ const HomePage = () => {
 
   return (
     <StyledHomePage className="homepage">
+          <Loader texts={texts} loader={loader} setLoader={setLoader} />
 
-          {loader ? <Loader loader={loader} setLoader={setLoader}/> : <HeroHeader />}
+          <HeroHeader />
 
+          {/* {loader ? (<Loader texts={texts} setLoader={setLoader} />) : (<HeroHeader />)} */}
     </StyledHomePage>
   );
 };
