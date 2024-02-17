@@ -96,19 +96,19 @@ const ProjectItem = () => {
   const currentProjectSlug = getRelativePath(location.pathname, '/projects/');
   const { data } = useQuery(PROJECT_ITEM_BY_SLUG_QUERY, {
     variables: { slug: currentProjectSlug },
-    skip: !!location.state || !!location.state.project
+    skip: !!location.state && !!location.state.project
   });
 
   useEffect(() => {
     // If the state is null, e.g, we are navigating directly to the route
     // We ask Contentful to fetch the project by its slug
     if (!location.state || !location.state.project) {
-      setProject(data.projectItemCollection.items[0]);
+      data && setProject(data.projectItemCollection.items[0]);
     } else {
       setProject(location.state.project);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.state]);
+  }, [location.state, data]);
 
   if (!project) {
     return <div>Loading...</div>;
