@@ -17,7 +17,10 @@ const projectItems = [
   {
     title: 'Azuri Project',
     slug: '/azuri-project',
-    description: '',
+    description: `Palmea sea view villas are a breathtaking collection of eight independent villas, located
+          in the Quartier du Barachois, offering panoramic views towards the exquisite lagoon of
+          Roches Noires. The perfect balance between luxury and comfort, these villas are a stunning
+          addition to the region.`,
     heroImage: img2,
     exteriorViews: [],
     interiorViews: []
