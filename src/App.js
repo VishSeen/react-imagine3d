@@ -15,6 +15,7 @@ import './styles/global.css';
 import './styles/test.css';
 
 import HomePage from './pages/homepage/homepage';
+import ProjectItem from './pages/project-item/project-item';
 import Projects from './pages/projects/projects';
 
 function App() {
@@ -41,6 +42,10 @@ function App() {
           <Route
             path="/projects"
             element={<Projects />}
+          />
+          <Route
+            path="/projects/:slug"
+            element={<ProjectItem />}
           />
         </Routes>
       </Router>
