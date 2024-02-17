@@ -2,10 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { StyledItem } from './style';
 
-const NavBarItem = ({ index, title, slug, onOpenMenu }) => {
+const NavBarItem = ({ index, title, slug, image, onOpenMenu }) => {
   return (
     <>
-      <StyledItem>
+      <StyledItem image={image}>
         <span>{index}</span>
         <NavLink
           to={slug}

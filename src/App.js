@@ -29,7 +29,6 @@ function App() {
         isOpened={menuOpen}
         onOpenMenu={menuBtnClick}
       />
-
       <Router>
         <NavBar
           isOpened={menuOpen}
