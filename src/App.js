@@ -17,6 +17,7 @@ import './styles/test.css';
 import HomePage from './pages/homepage/homepage';
 import ProjectItem from './pages/project-item/project-item';
 import Projects from './pages/projects/projects';
+import AboutUs from './pages/about-us/about-us';
 
 function App() {
   const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
