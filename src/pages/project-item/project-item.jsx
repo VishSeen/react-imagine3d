@@ -4,9 +4,6 @@ import Slider from 'react-slick';
 import { StyledProjectAbout, StyledProjectHero, StyledProjectItem } from './style';
 
 import { useQuery } from '@apollo/client';
-// TODO: Move these images out when Contentful is in place
-import img1 from '../../assets/img1.jpg';
-import img2 from '../../assets/img2.jpg';
 import PROJECT_ITEM_BY_SLUG_QUERY from '../../gql-query/ProjectItemBySlugQuery';
 import { getRelativePath } from '../../utils/get-relative-path';
 
@@ -16,6 +13,7 @@ const sliderSettings = {
   className: 'center',
   infinite: true,
   slidesToShow: 3,
+  swipeToSlide: true,
   speed: 500
 };
 
@@ -29,7 +27,7 @@ const CommonSlider = ({ images }) => {
             className="slick-image-wrapper"
           >
             <img
-              src={image}
+              src={image.url}
               alt="Slider"
             />
           </div>
@@ -58,7 +56,7 @@ const HeroSection = ({ heroImage, title }) => {
 
 const AboutSection = ({ description }) => {
   return (
-    <StyledProjectAbout className='block-text-about'>
+    <StyledProjectAbout className="block-text-about">
       <h2>About the project</h2>
       <p>{description}</p>
     </StyledProjectAbout>
@@ -121,14 +119,14 @@ const ProjectItem = () => {
           heroImage={project.heroImage.url}
           title={project.title}
         />
-        <AboutSection description={project.description} />
+        <AboutSection description={project.projectDescription} />
         <InteriorSection
-          description={'A description for interior'}
-          images={[img1, img2, img1, img2, img1, img2]}
+          description={project.interiorViewsDescription}
+          images={project.interiorViewsCollection.items}
         />
         <ExteriorSection
-          description={'A description for exterior'}
-          images={[img1, img2, img1, img2, img1, img2]}
+          description={project.exteriorViewsDescription}
+          images={project.exteriorViewsCollection.items}
         />
       </StyledProjectItem>
     </>
