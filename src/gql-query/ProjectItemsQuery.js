@@ -2,13 +2,25 @@ import { gql } from '@apollo/client';
 
 const PROJECT_ITEMS_QUERY = gql`
   query GetProjectItems {
-    projectItemCollection {
+    projectItemCollection(limit: 20) {
       items {
         title
         slug
-        description
+        projectDescription
         heroImage {
           url
+        }
+        exteriorViewsDescription
+        exteriorViewsCollection {
+          items {
+            url
+          }
+        }
+        interiorViewsDescription
+        interiorViewsCollection {
+          items {
+            url
+          }
         }
       }
     }
