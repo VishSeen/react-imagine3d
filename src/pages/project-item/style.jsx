@@ -5,16 +5,16 @@ export const StyledProjectItem = styled.div`
   margin: 2rem;
   top: 5rem;
 
-  h2 {
-    font-family: 'Syne', sans-serif;
-  }
-
   .container {
-    padding: 4rem 0;
+    padding: 8rem 0;
+
+        h2 {
+        margin-bottom: 30px;
+    }
   }
 
   .slides {
-    margin-top: 2rem;
+    margin-top: 5rem;
 
     .slick-slide {
       padding: 0 15px;
