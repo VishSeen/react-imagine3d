@@ -19,6 +19,9 @@ import ProjectItem from './pages/project-item/project-item';
 import Projects from './pages/projects/projects';
 import AboutUs from './pages/about-us/about-us';
 
+// TODO: to add a loader screen so that when all data is received, we display the required
+// page. Loader screen should contain client logo. A global state/context can be used for this.
+
 function App() {
   const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
   const [menuOpen, setMenuOpen] = useState(false);

@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledProjectItem = styled.div`
-  position: relative;
-  margin: 2rem;
-  top: 5rem;
 
   .container {
     padding: 8rem 0;
-
+    margin: 2rem;
         h2 {
         margin-bottom: 30px;
     }
@@ -55,7 +52,7 @@ export const StyledProjectHero = styled.div`
           bottom: 0;
           right: 0;
           background-color: #040404;
-          opacity: 0.3;
+          opacity: 0.5;
         }
       }
 
@@ -79,6 +76,7 @@ export const StyledProjectHero = styled.div`
 `;
 
 export const StyledProjectAbout = styled.div`
+  margin: 2rem;
   padding: 9rem 0;
   display: flex;
   align-items: center;

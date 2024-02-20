@@ -14,7 +14,8 @@ const sliderSettings = {
   infinite: true,
   slidesToShow: 3,
   swipeToSlide: true,
-  speed: 500
+  speed: 500,
+  autoplay: true
 };
 
 const CommonSlider = ({ images }) => {
