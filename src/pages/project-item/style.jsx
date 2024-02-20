@@ -79,9 +79,11 @@ export const StyledProjectHero = styled.div`
 `;
 
 export const StyledProjectAbout = styled.div`
-  padding: 4rem 0;
+  padding: 9rem 0;
   display: flex;
+  align-items: center;
   gap: 3rem;
+  min-height: 300px;
 
   p {
     flex: 1;

@@ -58,7 +58,7 @@ const HeroSection = ({ heroImage, title }) => {
 
 const AboutSection = ({ description }) => {
   return (
-    <StyledProjectAbout>
+    <StyledProjectAbout className='block-text-about'>
       <h2>About the project</h2>
       <p>{description}</p>
     </StyledProjectAbout>
