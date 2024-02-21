@@ -48,6 +48,12 @@ h2 {
     font-size: 40px;
 }
 
+p {
+    line-height: 1.6;
+    font-size: 19px;
+    font-weight: 300;
+}
+
 
 footer {
   font-family: 'Syne', sans-serif;
