@@ -51,6 +51,10 @@ function App() {
             path="/projects/:slug"
             element={<ProjectItem />}
           />
+          <Route
+            path="/about-us"
+            element={<AboutUs />}
+          />
         </Routes>
       </Router>
 

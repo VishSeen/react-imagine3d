@@ -3,6 +3,7 @@ import React from 'react';
 import NavBarItem from '../../components/nav-bar-item/nav-bar-item';
 import PROJECT_ITEMS_QUERY from '../../gql-query/ProjectItemsQuery';
 import { StyledProjects, StyledTitle } from './style';
+import Title from '../../components/title/title';
 
 const Projects = () => {
   const { data } = useQuery(PROJECT_ITEMS_QUERY);

@@ -9,6 +9,8 @@ const StyledTitle = styled.div`
   display: flex;
   justify-content: center;
   text-transform: uppercase;
+  overflow: hidden;
+
   span {
     text-align: center;
     font-size: 175px;

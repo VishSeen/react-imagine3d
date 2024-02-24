@@ -4,9 +4,9 @@ import Title from "../../components/title/title";
 const AboutUs = () => {
     return(
         <>
-            <Title text="ABOUT " />
+            <Title text="ABOUT" />
 
-            <main style={{
+            {/* <main style={{
                 position: "relative",
                 top: "10rem",
                 left: "2rem"}}>
@@ -18,7 +18,7 @@ const AboutUs = () => {
                     >
                         Capturing Elegance, <br /> Creating Atmosphere
                     </h1>
-            </main>
+            </main> */}
         </>
     )
 }

@@ -12,6 +12,15 @@ font-family: 'Nanum Myeongjo', serif;
     font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
 }
 
+::-moz-selection {
+  color: #000000;
+  background: #fd5a1e;
+}
+
+::selection {
+  color: #000000;
+  background: #fd5a1e;
+}
 
 * {
   box-sizing: border-box;
