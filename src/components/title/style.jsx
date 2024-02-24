@@ -13,9 +13,13 @@ const StyledTitle = styled.div`
 
   span {
     text-align: center;
-    font-size: 175px;
+    font-size: 60px;
     font-weight: 600;
     color: #161616;
+
+    @media screen and (min-width: 992px) {
+      font-size: 175px;
+    }
   }
 `;
 
