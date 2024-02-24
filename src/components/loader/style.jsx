@@ -23,7 +23,11 @@ const StyledLoader = styled.div`
 
         span {
             font-weight: 300;
-            font-size: 4rem;
+            font-size: 1.3rem;
+
+            @media screen and (min-width: 992px) {
+              font-size: 4rem;
+            }
         }
     }
 `;

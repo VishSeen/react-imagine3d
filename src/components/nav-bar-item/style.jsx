@@ -49,14 +49,23 @@ export const StyledItem = styled.li`
   span {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
+    font-size: 12px;
     margin-right: 10px;
     color: #aeaeae;
     transition: 0.3s all ease-in-out;
+
+    @media screen and (min-width: 992px) {
+      font-size: 16px;
+    }
   }
 
   a {
     font-weight: 600;
-    font-size: 8rem;
+    font-size: 2.5rem;
     transition: 0.3s all ease-in-out;
+
+    @media screen and (min-width: 992px) {
+      font-size: 8rem;
+    }
   }
 `;
