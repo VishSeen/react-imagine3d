@@ -9,7 +9,7 @@ const Logo = ({
     return(
         <StyledLogo className="logo">
             <a href={link}>
-                <img src={img} alt={img} style={{ width: '125px' }} />
+                <img src={img} alt={img} />
             </a>
         </StyledLogo>
     )

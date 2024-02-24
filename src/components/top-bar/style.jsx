@@ -3,14 +3,15 @@ import styled from 'styled-components';
 
 const StyledTopBar = styled.header`
     position: fixed;
-    top: 2rem;
-    left: 2rem;
-    right: 2rem;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
     z-index: 99;
 
-
-    .top-bar__logo {
-        width: 125px;
+    @media only screen and (min-width: 992px) {
+      top: 2rem;
+      left: 2rem;
+      right: 2rem;
     }
 
 
@@ -36,6 +37,7 @@ const StyledTopBar = styled.header`
             overflow: hidden;
             margin-top: 9px;
             margin-right: 6px;
+
             &.opened {
                 &.menu-txt .txt-menu {
                     transform: translateY(-100%);
@@ -52,6 +54,14 @@ const StyledTopBar = styled.header`
             }
             .txt-toggle {
                 transform: translateY(100%);
+            }
+
+            .txt-menu, .txt-toggle {
+              font-size: 13px;
+
+              @media only screen and (min-width: 992px) {
+                font-size: 16px;
+              }
             }
 
             span {

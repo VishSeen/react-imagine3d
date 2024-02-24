@@ -7,7 +7,10 @@ const StyledLogo = styled.div`
 
     a {
         img {
-            width: 125px;
+            width: 90px;
+            @media only screen and (min-width: 992px) {
+              width: 125px;
+            }
         }
     }
 `;
