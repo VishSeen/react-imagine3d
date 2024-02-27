@@ -10,21 +10,18 @@ import HOMEPAGE_QUERY from "../../gql-query/HomepageQuery";
 const HomePage = () => {
     const { data } = useQuery(HOMEPAGE_QUERY);
     const [texts, setTexts] = useState(null);
+    const [featuredItems, setFeaturedtems] = useState(null);
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         if (data) {
-            setTexts(data?.homePageCollection?.items[0]?.loadertext?.json?.content)
+          setFeaturedtems(data?.homePageCollection?.items[0]?.featuredProjectsCollection?.items)
         }
     }, [data])
 
   return (
     <StyledHomePage className="homepage">
-          <Loader texts={texts} loader={loader} setLoader={setLoader} />
-
-          <HeroHeader />
-
-          {/* {loader ? (<Loader texts={texts} setLoader={setLoader} />) : (<HeroHeader />)} */}
+      {loader ? (<Loader setLoader={setLoader} />) : (<HeroHeader featuredItems={featuredItems} />)}
     </StyledHomePage>
   );
 };

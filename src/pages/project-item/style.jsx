@@ -79,11 +79,13 @@ export const StyledProjectAbout = styled.div`
   margin: 2rem;
   padding: 9rem 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 3rem;
   min-height: 300px;
+  text-align: center;
 
   p {
-    flex: 1;
+    width: 55%;
   }
 `;
