@@ -2,15 +2,12 @@ import React, { useRef, useState } from "react";
 import StyledHeroHeader from "./style";
 import BottomBar from "./bottom-bar/bottom-bar";
 
-import img1 from '../../assets/img1.jpg';
-import img2 from '../../assets/img2.jpg';
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
+const FullWidthSlide = ({ link, title, category, img, imgAlt }) => {
     return (
       <section className="slide-content">
         <a href={link}>
@@ -28,8 +25,7 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
 
         <div className="image">
           <picture>
-            {/* <img src={image} media=""/> */}
-            <img src={image} />
+            <img src={img} alt={imgAlt} />
           </picture>
         </div>
       </section>
@@ -37,23 +33,28 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
   }
 
 
-  const HeroHeader = () => {
+  const HeroHeader = ({
+    featuredItems
+  }) => {
     const [currentSlide, setCurrentSlide] = useState(1);
     let sliderRef = useRef('null');
 
-    const totalSlides = 5;
+    const totalSlides = featuredItems.length;
 
     const sliderNext = () => sliderRef.slickNext();
     const sliderPrev = () => sliderRef.slickPrev();
-    const slideChanged = () => setCurrentSlide(prevValue => prevValue < 5 ? prevValue + 1 : 1)
+    const slideChanged = () => setCurrentSlide(prevValue => prevValue < totalSlides ? prevValue + 1 : 1)
 
     var settings = {
       dots: false,
       infinite: true,
-      speed: 1000,
-      autoplay: false,
+      speed: 4000,
+      autoplay: true,
       slidesToShow: 1,
       slidesToScroll: 1,
+      draggable: false,
+      pauseOnFocus: false,
+      fade: true
     };
 
 
@@ -66,19 +67,18 @@ const FullWidthSlide = ({ link, title, category, image, imageMobile}) => {
             }}
             afterChange={slideChanged}
         >
-          <FullWidthSlide
-            link='#'
-            title="Mauritius Corporation Bank"
-            category={'exterior'}
-            image={img2}
-          />
-
-          <FullWidthSlide
-            link='#'
-            title="SBI Mauritius"
-            category={'interior'}
-            image={img1}
-          />
+          {
+            featuredItems.map((item, key) => (
+              <FullWidthSlide
+                key={key}
+                link={`projects/${item?.slug}`}
+                title={item?.title}
+                category={item?.heroImageType ? 'Exterior' : 'Interior'}
+                img={item?.heroImage?.url}
+                imgAlt={item?.heroImage?.title}
+              />
+            ))
+          }
         </Slider>
 
         <BottomBar

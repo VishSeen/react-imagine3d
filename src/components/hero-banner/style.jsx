@@ -36,7 +36,8 @@ const StyledHeroHeader = styled.div`
                 right: 0;
                 width: 100%;
                 height: 100%;
-                background-color: #0000001d;
+                background-color: #040404;
+                opacity: 0.5;
             }
 
             img {

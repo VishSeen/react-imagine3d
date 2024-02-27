@@ -2,13 +2,21 @@ import { gql } from '@apollo/client'
 
 const HOMEPAGE_QUERY = gql`
     query HomepageQuery {
-        homePageCollection{
+      homePageCollection{
+        items {
+          featuredProjectsCollection {
             items {
-            loadertext {
-                json
+              title
+              slug
+              heroImageType
+              heroImage {
+                url
+                title
+              }
             }
-            }
+          }
         }
+      }
     }
 `;
 
