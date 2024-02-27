@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import NavBarItem from '../nav-bar-item/nav-bar-item';
 import Title from '../title/title';
 import StyledNav from './style';
+import gsap from 'gsap';
+
 
 const NavBar = ({ isOpened, onOpenMenu }) => {
+  const navRef = useRef(null)
+
+  useEffect(() => {
+    let tl = gsap.timeline();
+
+    tl.fromTo(navRef.current, { duration: .2, opacity: 0 }, { opacity: 1 })
+  }, [isOpened])
+
+
   return (
-    <StyledNav className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
+    <StyledNav ref={navRef} className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
       <img />
 
       <Title text="Explore" />
