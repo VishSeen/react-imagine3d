@@ -11,7 +11,13 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
   useEffect(() => {
     let tl = gsap.timeline();
 
-    tl.fromTo(navRef.current, { duration: .2, opacity: 0 }, { opacity: 1 })
+    tl.fromTo(navRef.current, {
+        opacity: 0
+      }, {
+      duration: .5,
+      ease: 'power1',
+      opacity: 1
+    })
   }, [isOpened])
 
 
