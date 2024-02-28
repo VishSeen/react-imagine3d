@@ -1,13 +1,11 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 import logo from './assets/logo/white.png';
-import HeroHeader from './components/hero-banner/hero-header';
 import NavBar from './components/nav-bar/nav-bar';
 import TopBar from './components/top-bar/top-bar';
-
-import config from './config.json';
 
 import PROJECT_PAGE_QUERY from './gql-query/ProjectPageQuery';
 
@@ -63,6 +61,8 @@ function App() {
       {/* <footer>
 				© 2023 Vishroy Seenarain. All rights reserved.
 			</footer> */}
+
+      <SpeedInsights />
     </div>
   );
 }
