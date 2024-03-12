@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { SpeedInsights } from "@vercel/speed-insights/react"
+
 
 import logo from './assets/logo/white.png';
 import NavBar from './components/nav-bar/nav-bar';
@@ -61,8 +61,6 @@ function App() {
       {/* <footer>
 				© 2023 Vishroy Seenarain. All rights reserved.
 			</footer> */}
-
-      <SpeedInsights />
     </div>
   );
 }
