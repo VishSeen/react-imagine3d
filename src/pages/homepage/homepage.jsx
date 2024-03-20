@@ -9,13 +9,12 @@ import HOMEPAGE_QUERY from "../../gql-query/HomepageQuery";
 
 const HomePage = () => {
     const { data } = useQuery(HOMEPAGE_QUERY);
-    const [texts, setTexts] = useState(null);
     const [featuredItems, setFeaturedtems] = useState(null);
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-        if (data) {
-          setFeaturedtems(data?.homePageCollection?.items[0]?.featuredProjectsCollection?.items)
+        if (data !== null) {
+          setFeaturedtems(data?.homePageCollection?.items[0]?.featuredProjectsCollection?.items);
         }
     }, [data])
 
