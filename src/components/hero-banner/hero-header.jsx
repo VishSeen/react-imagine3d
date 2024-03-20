@@ -39,11 +39,10 @@ const FullWidthSlide = ({ link, title, category, img, imgAlt }) => {
     const [currentSlide, setCurrentSlide] = useState(1);
     let sliderRef = useRef('null');
 
-    const totalSlides = featuredItems.length;
-
     const sliderNext = () => sliderRef.slickNext();
     const sliderPrev = () => sliderRef.slickPrev();
-    const slideChanged = () => setCurrentSlide(prevValue => prevValue < totalSlides ? prevValue + 1 : 1)
+    const slideChanged = () => setCurrentSlide(prevValue => prevValue < featuredItems.length ? prevValue + 1 : 1)
+
 
     var settings = {
       dots: false,
@@ -89,7 +88,7 @@ const FullWidthSlide = ({ link, title, category, img, imgAlt }) => {
             btnPrev={sliderPrev}
             btnNext={sliderNext}
             currentSlide={`0${currentSlide}`}
-            totalSlides={`0${totalSlides}`}
+            totalSlides={`0${featuredItems.length}`}
           />
       </StyledHeroHeader>
     );

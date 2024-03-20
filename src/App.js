@@ -1,9 +1,8 @@
-import { useQuery } from '@apollo/client';
+
 import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 
-import logo from './assets/logo/white.png';
 import NavBar from './components/nav-bar/nav-bar';
 import TopBar from './components/top-bar/top-bar';
 
@@ -21,7 +20,6 @@ import AboutUs from './pages/about-us/about-us';
 // page. Loader screen should contain client logo. A global state/context can be used for this.
 
 function App() {
-  const { loading, error, data } = useQuery(PROJECT_PAGE_QUERY);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuBtnClick = () => setMenuOpen(!menuOpen);
 

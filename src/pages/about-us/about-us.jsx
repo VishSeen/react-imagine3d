@@ -1,25 +1,17 @@
 import React from "react";
-import Title from "../../components/title/title";
+import StyledAbout from './style'
+// import Title from "../../components/title/title";
 
 const AboutUs = () => {
     return(
-        <>
-            <Title text="ABOUT" />
+      <StyledAbout>
+            {/* <Title text="ABOUT" /> */}
 
-            {/* <main style={{
-                position: "relative",
-                top: "10rem",
-                left: "2rem"}}>
-                    <h1 style={{
-                        fontFamily: 'Syne',
-                        fontWeight: "600",
-                        fontSize: '4rem',
-                        textAlign: "left"}}
-                    >
-                        Capturing Elegance, <br /> Creating Atmosphere
-                    </h1>
-            </main> */}
-        </>
+          <main>
+            <h3>Page under construction</h3>
+            <p>Kindly note that this page is currently in development phase..</p>
+          </main>
+      </StyledAbout>
     )
 }
 
