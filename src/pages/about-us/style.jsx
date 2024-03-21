@@ -8,9 +8,14 @@ const StyledAbout = styled.main`
     flex-direction: column;
     height: 100vh;
     text-align: center;
+    margin: 1rem;
+
+    @media screen and (min-width: 992px) {
+      margin: 2rem;
+    }
 
     h3 {
-      font-size: 18px;
+      font-size: 20px;
       font-family: 'Syne', sans-serif;
       font-weight: bold;
       margin-bottom: 10px;
