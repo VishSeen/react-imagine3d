@@ -12,19 +12,34 @@ const Projects = () => {
   return (
     <>
       <StyledTitle text="Projects" />
+
       <StyledProjects className="project-lists">
         <nav className="projects-list-nav">
           <ul>
             {projectItems &&
               projectItems.map((item, index) => (
-                <NavBarItem
-                  key={index}
-                  index={(index + 1).toString().padStart(2, 0)}
-                  title={item.title}
-                  slug={`/projects/${item.slug}`}
-                  state={{ project: item }}
-                  image={item.image}
-                />
+                <>
+                  {/* <NavBarItem
+                    key={index}
+                    index={(index + 1).toString().padStart(2, 0)}
+                    title={item.title}
+                    slug={`/projects/${item.slug}`}
+                    state={{ project: item }}
+                    image={item.image}
+                  /> */}
+
+                  <div className="project-item" key={index}>
+                    <div className="project-image">
+                      <img src={item.heroImage.url} alt="ss" />
+                    </div>
+
+                    <div className="project-title">
+                      <h3>
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+                </>
               ))}
           </ul>
         </nav>

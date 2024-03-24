@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Slider from 'react-slick';
 import { StyledProjectAbout, StyledProjectHero, StyledProjectItem } from './style';
@@ -116,19 +116,20 @@ const ProjectItem = () => {
   return (
     <>
       <StyledProjectItem>
-        <HeroSection
-          heroImage={project.heroImage.url}
-          title={project.title}
-        />
-        <AboutSection description={project.projectDescription} />
-        <InteriorSection
-          description={project.interiorViewsDescription}
-          images={project.interiorViewsCollection.items}
-        />
-        <ExteriorSection
-          description={project.exteriorViewsDescription}
-          images={project.exteriorViewsCollection.items}
-        />
+          <HeroSection
+            heroImage={project.heroImage.url}
+            title={project.title}
+          />
+          <AboutSection description={project.projectDescription} />
+          <InteriorSection
+            description={project.interiorViewsDescription}
+            images={project.interiorViewsCollection.items}
+          />
+          <ExteriorSection
+            description={project.exteriorViewsDescription}
+            images={project.exteriorViewsCollection.items}
+          />
+        {/* </div> */}
       </StyledProjectItem>
     </>
   );
