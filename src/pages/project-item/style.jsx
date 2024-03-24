@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledProjectItem = styled.div`
-
+  .section-scroll {
+    height: 100vh;
+  }
   .container {
     padding: 8rem 0;
     margin: 2rem;
