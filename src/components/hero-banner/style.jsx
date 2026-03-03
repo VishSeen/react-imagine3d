@@ -10,18 +10,39 @@ const StyledHeroHeader = styled.div`
             top: 20rem;
             z-index: 10;
             margin-left: 2rem;
+            max-width: 100%;
+
+            @media (max-width: 992px) {
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
+                width: auto;
+            }
 
             .title {
                 width: 75%;
                 p {
                     font-family: 'Syne', sans-serif;
-                    font-size: 84px;
+                    font-size: clamp(40px, 8vw, 84px);
                     font-weight: 600;
+                    line-height: 1.1;
                     transition: 0.4s all ease;
+                }
+
+                @media (max-width: 768px) {
+                    width: 90%;
+                    p {
+                        font-size: 42px; /* Fallback / specific adjustment */
+                    }
                 }
             }
             .category {
                 text-transform: capitalize;
+                font-family: 'Poppins', sans-serif;
+                font-size: 14px;
+                margin-bottom: 1rem;
+                opacity: 0.8;
             }
         }
 

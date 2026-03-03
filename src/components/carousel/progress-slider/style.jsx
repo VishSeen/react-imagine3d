@@ -25,8 +25,9 @@ const StyledProgressSlider = styled.div`
             grid-area: rect;
 			width: 30%;
 			background-color: #ffffff;
-            transition: 0.4s all ease;
+            transition: width 0.4s ease;
             z-index: 1;
+            height: 100%; /* Fill container */
 		}
 
         .background {
@@ -34,6 +35,7 @@ const StyledProgressSlider = styled.div`
 			width: 100%;
 			background-color: #898989;
             z-index: 0;
+            height: 100%; /* Fill container */
         }
 	}
 `;

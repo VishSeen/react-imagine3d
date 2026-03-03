@@ -102,6 +102,31 @@ const StyledNav = styled.div`
       height: 100%;
     }
 
+    .contact-block {
+      margin-bottom: 3rem; /* Spacing between contact and socials */
+
+      .email-link {
+        display: flex;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px; /* Make it slightly larger/prominent */
+        color: #ddd;
+        text-decoration: none;
+        transition: 0.3s ease;
+        margin-top: -1rem; /* Visual balance against the label margin */
+
+        span:first-child {
+          margin-right: 12px;
+          font-size: 24px;
+        }
+
+        &:hover {
+          color: #fd5a1e;
+          transform: translateX(5px);
+        }
+      }
+    }
+
     .socials-label {
       font-family: 'Syne', sans-serif;
       font-size: 11px;

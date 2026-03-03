@@ -1,13 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import StyledProgressSlider from './style';
 
 const ProgressSlider = ({
     numSlides,
     currentSlide
 }) => {
-    let widthPerc = 100 % Number(numSlides);
-    console.log(widthPerc);
-    const [width, setWidth] = useState(widthPerc);
+    // Convert props (which might be strings like "01") to numbers
+    const current = parseInt(currentSlide, 10);
+    const total = parseInt(numSlides, 10);
+
+    // Calculate percentage width (100% / total * current)
+    // Or just (current / total) * 100
+    const width = total > 0 ? (current / total) * 100 : 0;
 
     return (
         <StyledProgressSlider className="progress-slider">
@@ -16,7 +20,7 @@ const ProgressSlider = ({
             </div>
 
             <div className="progress-bar">
-                <div className="rectangle" style={{ width: `${width}%`}}></div>
+                <div className="rectangle" style={{ width: `${width}%` }}></div>
                 <div className="background"></div>
             </div>
 

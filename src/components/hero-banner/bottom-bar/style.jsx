@@ -13,6 +13,23 @@ const StyledBottomBar = styled.div`
     flex-direction: row;
     justify-content: space-between;
     font-weight: 300;
+    z-index: 20;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+        padding: 1rem 1.5rem 2rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Improve legibility on mobile */
+
+        .bottom-bar__email,
+        .bottom-bar__socials {
+            display: none !important;
+        }
+
+        .bottom-bar__controls {
+            width: 100% !important;
+            max-width: 400px;
+        }
+    }
 
 
     .bottom-bar__email {

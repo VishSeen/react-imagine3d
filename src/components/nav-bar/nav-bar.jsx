@@ -2,6 +2,8 @@ import React from 'react';
 import NavBarItem from '../nav-bar-item/nav-bar-item';
 import Title from '../title/title';
 import StyledNav from './style';
+import config from '../../config.json';
+
 
 const NavBar = ({ isOpened, onOpenMenu }) => {
   return (
@@ -37,20 +39,30 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
         </nav>
 
         <nav className="socials">
-          <span className="socials-label">Social Links</span>
-          <ul>
-            <li>
-              <a href="#">Facebook</a>
-            </li>
+          <div className="contact-block">
+            <span className="socials-label">Get in touch</span>
+            <a href="mailto:hello@vish.studio" className="email-link">
+              <span className={config.icons}>mail</span>
+              <span>hello@vish.studio</span>
+            </a>
+          </div>
 
-            <li>
-              <a href="#">Instagram</a>
-            </li>
+          <div className="socials-block">
+            <span className="socials-label">Social Links</span>
+            <ul>
+              <li>
+                <a href="#">Facebook</a>
+              </li>
 
-            <li>
-              <a href="#">Behance</a>
-            </li>
-          </ul>
+              <li>
+                <a href="#">Instagram</a>
+              </li>
+
+              <li>
+                <a href="#">Behance</a>
+              </li>
+            </ul>
+          </div>
 
           <footer>© 2023 <a href="https://www.vish.studio/" target='_blank' rel="noreferrer">VISH Studio</a>. All rights reserved.</footer>
         </nav>
