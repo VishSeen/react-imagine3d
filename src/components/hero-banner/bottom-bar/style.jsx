@@ -117,9 +117,26 @@ const StyledBottomBar = styled.div`
 			padding: 20px 0;
 			transition: 0.2s all ease-in-out;
 			transform: translateY(100%);
+			display: flex;
+			align-items: center;
+			gap: 2px;
 
-			span {
-				margin: 0 5px;
+			.social-abbr {
+				color: #fff;
+				text-decoration: none;
+				font-family: 'Syne', sans-serif;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1px;
+				padding: 4px 6px;
+				border: 1px solid rgba(255,255,255,0.25);
+				border-radius: 4px;
+				transition: all 0.2s ease;
+
+				&:hover {
+					background: #fd5a1e;
+					border-color: #fd5a1e;
+				}
 			}
 		}
     }

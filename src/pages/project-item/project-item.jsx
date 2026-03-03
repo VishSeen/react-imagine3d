@@ -3,6 +3,8 @@ import { useLocation, NavLink } from 'react-router-dom';
 import Slider from 'react-slick';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../../utils/animations';
+import Loader from '../../components/loader/loader';
+import { usePageLoading } from '../../context/LoadingContext';
 import { StyledProjectAbout, StyledProjectHero, StyledProjectItem } from './style';
 
 import { useQuery } from '@apollo/client';
@@ -153,7 +155,14 @@ const GallerySection = ({ tag, title, description, images }) => {
 
 const ProjectItem = () => {
   const location = useLocation();
+  const { setPageReady } = usePageLoading();
   const [project, setProject] = useState(null);
+  const [loader, setLoader] = useState(true);
+
+  const handleLoaderDone = (val) => {
+    setLoader(val);
+    if (!val) setPageReady(true);
+  };
 
   const currentProjectSlug = getRelativePath(location.pathname, '/projects/');
   const { data } = useQuery(PROJECT_ITEM_BY_SLUG_QUERY, {
@@ -170,13 +179,7 @@ const ProjectItem = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state, data]);
 
-  if (!project) {
-    return (
-      <div style={{ background: '#0b0b0b', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.3)', fontFamily: 'Syne', letterSpacing: '3px', textTransform: 'uppercase', fontSize: '13px' }}>
-        Loading...
-      </div>
-    );
-  }
+  if (loader || !project) return <Loader setLoader={handleLoaderDone} />;
 
   return (
     <StyledProjectItem>

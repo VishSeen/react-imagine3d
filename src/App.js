@@ -1,8 +1,9 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { gsap } from './utils/animations';
+import { LoadingContext } from './context/LoadingContext';
 
 import NavBar from './components/nav-bar/nav-bar';
 import TopBar from './components/top-bar/top-bar';
@@ -24,19 +25,26 @@ import Footer from './components/footer/footer';
 
 function ConditionalFooter({ socials, footerTitle }) {
   const location = useLocation();
+  const { pageReady } = React.useContext(LoadingContext);
   if (location.pathname === '/') return null;
+  if (!pageReady) return null;
   return <Footer socials={socials} titleJson={footerTitle} />;
 }
 
 function PageTransition({ children }) {
   const location = useLocation();
   const wrapperRef = useRef(null);
+  const { setPageReady } = React.useContext(LoadingContext);
 
   useEffect(() => {
-    gsap.fromTo(wrapperRef.current,
+    setPageReady(false);
+    const tween = gsap.fromTo(
+      wrapperRef.current,
       { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'all' }
+      { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'all', overwrite: true }
     );
+    return () => tween.kill();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return <div ref={wrapperRef}>{children}</div>;
@@ -46,6 +54,9 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuBtnClick = () => setMenuOpen(!menuOpen);
 
+  const [pageReady, setPageReady] = useState(false);
+  const loadingContextValue = useMemo(() => ({ pageReady, setPageReady }), [pageReady]);
+
   const { data: socialsData } = useQuery(SOCIALS_QUERY);
   const socials = socialsData?.socialsCollection?.items?.[0]?.linksCollection?.items || [];
 
@@ -53,38 +64,40 @@ function App() {
   const footerTitle = footerData?.footerCollection?.items?.[0]?.title?.json || null;
 
   return (
-    <div className="App">
-      <TopBar
-        isOpened={menuOpen}
-        onOpenMenu={menuBtnClick}
-      />
-      <Router>
-        <NavBar
+    <LoadingContext.Provider value={loadingContextValue}>
+      <div className="App">
+        <TopBar
           isOpened={menuOpen}
           onOpenMenu={menuBtnClick}
-          socials={socials}
         />
-        <Routes>
-          <Route
-            path="/"
-            element={<PageTransition><HomePage /></PageTransition>}
+        <Router>
+          <NavBar
+            isOpened={menuOpen}
+            onOpenMenu={menuBtnClick}
+            socials={socials}
           />
-          <Route
-            path="/projects"
-            element={<PageTransition><Projects /></PageTransition>}
-          />
-          <Route
-            path="/projects/:slug"
-            element={<PageTransition><ProjectItem /></PageTransition>}
-          />
-          <Route
-            path="/about-us"
-            element={<PageTransition><AboutUs /></PageTransition>}
-          />
-        </Routes>
-        <ConditionalFooter socials={socials} footerTitle={footerTitle} />
-      </Router>
-    </div>
+          <Routes>
+            <Route
+              path="/"
+              element={<PageTransition><HomePage socials={socials} /></PageTransition>}
+            />
+            <Route
+              path="/projects"
+              element={<PageTransition><Projects /></PageTransition>}
+            />
+            <Route
+              path="/projects/:slug"
+              element={<PageTransition><ProjectItem /></PageTransition>}
+            />
+            <Route
+              path="/about-us"
+              element={<PageTransition><AboutUs /></PageTransition>}
+            />
+          </Routes>
+          <ConditionalFooter socials={socials} footerTitle={footerTitle} />
+        </Router>
+      </div>
+    </LoadingContext.Provider>
   );
 }
 

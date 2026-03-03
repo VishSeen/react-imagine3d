@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../../utils/animations';
 import LPLayout from '../../components/layout/lp-layout';
+import Loader from '../../components/loader/loader';
+import { usePageLoading } from '../../context/LoadingContext';
 import ABOUT_PAGE_QUERY from '../../gql-query/AboutPageQuery';
 
 const AboutContainer = styled.div`
@@ -102,8 +104,15 @@ const AboutContainer = styled.div`
 
 const AboutUs = () => {
   const { data, loading } = useQuery(ABOUT_PAGE_QUERY);
+  const { setPageReady } = usePageLoading();
+  const [loader, setLoader] = useState(true);
   const containerRef = useRef(null);
   const aboutPage = data?.aboutPageCollection?.items?.[0];
+
+  const handleLoaderDone = (val) => {
+    setLoader(val);
+    if (!val) setPageReady(true);
+  };
 
   const description = aboutPage?.aboutDescription || '';
   const infoCards = aboutPage?.aboutInfoCardListCollection?.items || [];
@@ -124,7 +133,7 @@ const AboutUs = () => {
     if (banner) gsap.fromTo(banner, { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: banner, start: 'top 88%' } });
   }, { scope: containerRef, dependencies: [aboutPage] });
 
-  if (loading) return null;
+  if (loader || loading) return <Loader setLoader={handleLoaderDone} />;
 
   return (
     <LPLayout

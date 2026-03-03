@@ -26,6 +26,8 @@ const NavBar = ({ isOpened, onOpenMenu, socials = [] }) => {
       );
     } else {
       gsap.killTweensOf([items, socPanel]);
+      gsap.set(items, { clearProps: 'all' });
+      if (socPanel) gsap.set(socPanel, { clearProps: 'all' });
     }
   }, [isOpened]);
 
@@ -91,15 +93,15 @@ const NavBar = ({ isOpened, onOpenMenu, socials = [] }) => {
                 ))
               ) : (
                 <>
-                  <li><a href="#">Facebook</a></li>
-                  <li><a href="#">Instagram</a></li>
-                  <li><a href="#">Behance</a></li>
+                  <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                  <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                  <li><a href="https://behance.net" target="_blank" rel="noopener noreferrer">Behance</a></li>
                 </>
               )}
             </ul>
           </div>
 
-          <footer>© 2023 <a href="https://www.vish.studio/" target='_blank' rel="noreferrer">VISH Studio</a>. All rights reserved.</footer>
+          <footer>© 2023 <a href="https://www.vish.studio/" target='_blank' rel="noopener noreferrer">VISH Studio</a>. All rights reserved.</footer>
         </nav>
       </div>
     </StyledNav>

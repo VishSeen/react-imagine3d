@@ -7,7 +7,7 @@ import HOMEPAGE_QUERY from "../../gql-query/HomepageQuery";
 
 
 
-const HomePage = () => {
+const HomePage = ({ socials = [] }) => {
   const { data } = useQuery(HOMEPAGE_QUERY);
   const [featuredItems, setFeaturedtems] = useState(null);
   const [loader, setLoader] = useState(true);
@@ -20,7 +20,7 @@ const HomePage = () => {
 
   return (
     <StyledHomePage className="homepage">
-      {(loader || !featuredItems) ? (<Loader setLoader={setLoader} />) : (<HeroHeader featuredItems={featuredItems} />)}
+      {(loader || !featuredItems) ? (<Loader setLoader={setLoader} />) : (<HeroHeader featuredItems={featuredItems} socials={socials} />)}
     </StyledHomePage>
   );
 };

@@ -34,7 +34,8 @@ const FullWidthSlide = ({ link, title, category, img, imgAlt }) => {
 
 
 const HeroHeader = ({
-  featuredItems
+  featuredItems,
+  socials = []
 }) => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const sliderRef = useRef(null);
@@ -81,9 +82,11 @@ const HeroHeader = ({
 
       <BottomBar
         emailTxt="Get in touch"
+        emailAddress="imagine3dvisual@gmail.com"
         emailIcon="mail"
         socialsTxt="Follow"
         socialsIcon="share"
+        socials={socials}
         btnPrev={sliderPrev}
         btnNext={sliderNext}
         currentSlide={`0${currentSlide}`}

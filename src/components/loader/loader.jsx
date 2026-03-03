@@ -29,6 +29,8 @@ const Loader = ({ setLoader }) => {
                 { width: '100%', duration: 1.8, ease: 'power1.inOut' },
                 '-=0.2'
             );
+
+        return () => tl.kill();
     }, []);
 
     return (

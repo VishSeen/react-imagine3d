@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGSAP } from '@gsap/react';
 import { gsap, ScrollTrigger } from '../../utils/animations';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -22,6 +22,16 @@ const Footer = ({ socials = [], titleJson }) => {
    const renderedTitle = titleJson
       ? documentToReactComponents(titleJson, richTextOptions)
       : fallbackTitle;
+
+   // Mount animation — footer slides up into view when first rendered
+   useEffect(() => {
+      const el = footerRef.current;
+      if (!el) return;
+      gsap.fromTo(el,
+         { opacity: 0, y: 60 },
+         { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: 0.1, onComplete: () => ScrollTrigger.refresh() }
+      );
+   }, []);
 
    useGSAP(() => {
       const el = footerRef.current;
@@ -77,9 +87,9 @@ const Footer = ({ socials = [], titleJson }) => {
                      ))
                   ) : (
                      <>
-                        <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
-                        <li><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li>
-                        <li><a href="https://behance.net" target="_blank" rel="noreferrer">Behance</a></li>
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://behance.net" target="_blank" rel="noopener noreferrer">Behance</a></li>
                      </>
                   )}
                   <li style={{ marginTop: '2rem' }}><span style={{ color: '#444', fontFamily: 'Poppins', fontSize: '12px' }}>Moka, Mauritius</span></li>
@@ -89,10 +99,10 @@ const Footer = ({ socials = [], titleJson }) => {
 
          {/* Copyright / Legal */}
          <div className="footer-bottom">
-            <p>© 2023 <a href="https://www.vish.studio/" target='_blank' rel="noreferrer">VISH Studio</a>. All rights reserved.</p>
+            <p>© 2023 <a href="https://www.vish.studio/" target='_blank' rel="noopener noreferrer">VISH Studio</a>. All rights reserved.</p>
             <div className="socials">
-               <a href="#">Privacy Policy</a>
-               <a href="#">Terms</a>
+               <span style={{ color: '#444', fontFamily: 'Poppins', fontSize: '12px', letterSpacing: '0.5px' }}>Privacy Policy</span>
+               <span style={{ color: '#444', fontFamily: 'Poppins', fontSize: '12px', letterSpacing: '0.5px' }}>Terms</span>
             </div>
          </div>
       </StyledFooter>

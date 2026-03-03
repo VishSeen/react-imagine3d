@@ -57,17 +57,25 @@ const BottomBar = ({
                 </div>
 
                 <div className="socials__icons">
-                    <span className={config?.icons}>
-                        mail
-                    </span>
-
-                    <span className={config?.icons}>
-                        mail
-                    </span>
-
-                    <span className={config?.icons}>
-                        mail
-                    </span>
+                    {socials.length > 0 ? (
+                        socials.map((link, i) => (
+                            <a
+                                key={i}
+                                href={link.url}
+                                target={link.newTab ? '_blank' : '_self'}
+                                rel={link.newTab ? 'noopener noreferrer' : undefined}
+                                className="social-abbr"
+                            >
+                                {link.title.slice(0, 2).toUpperCase()}
+                            </a>
+                        ))
+                    ) : (
+                        <>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-abbr">IG</a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-abbr">LI</a>
+                            <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="social-abbr">BH</a>
+                        </>
+                    )}
                 </div>
             </div>
         </StyledBottomBar>

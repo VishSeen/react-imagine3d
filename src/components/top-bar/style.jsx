@@ -7,6 +7,9 @@ const StyledTopBar = styled.header`
     left: 1rem;
     right: 1rem;
     z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     @media only screen and (min-width: 992px) {
       top: 2rem;

@@ -123,6 +123,16 @@ const StyledFooter = styled.footer`
       font-size: 12px;
       color: #444;
       margin: 0;
+
+      a {
+        color: #fd5a1e;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #fff;
+        }
+      }
     }
 
     .socials {

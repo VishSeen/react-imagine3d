@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import LPLayout from "../../components/layout/lp-layout";
+import Loader from "../../components/loader/loader";
+import { usePageLoading } from "../../context/LoadingContext";
 import { useQuery } from "@apollo/client";
 import PROJECT_ITEMS_QUERY from "../../gql-query/ProjectItemsQuery";
 
@@ -167,8 +169,15 @@ const CategoryWrapper = styled.div`
 
 const Projects = () => {
   const { data, loading } = useQuery(PROJECT_ITEMS_QUERY);
+  const { setPageReady } = usePageLoading();
+  const [loader, setLoader] = useState(true);
   const [projects, setProjects] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All Projects');
+
+  const handleLoaderDone = (val) => {
+    setLoader(val);
+    if (!val) setPageReady(true);
+  };
 
   useEffect(() => {
     if (data && data.projectItemCollection) {
@@ -184,6 +193,8 @@ const Projects = () => {
   const filtered = activeFilter === 'All Projects'
     ? projects
     : projects.filter(p => p.projectType === activeFilter);
+
+  if (loader || loading) return <Loader setLoader={handleLoaderDone} />;
 
   return (
     <LPLayout
@@ -230,7 +241,7 @@ const Projects = () => {
           </ProjectCard>
         ))}
 
-        {loading && <p style={{ color: '#666' }}>Loading projects...</p>}
+
       </ProjectGrid>
     </LPLayout>
   );

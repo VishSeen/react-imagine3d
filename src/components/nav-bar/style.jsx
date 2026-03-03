@@ -178,10 +178,10 @@ const StyledNav = styled.div`
       line-height: 1.6;
 
       a {
-        color: #555;
+        color: #fd5a1e;
         text-decoration: none;
         transition: color 0.3s;
-        &:hover { color: #fd5a1e; }
+        &:hover { color: #fff; }
       }
     }
   }
