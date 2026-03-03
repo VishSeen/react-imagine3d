@@ -1,33 +1,44 @@
 import React, { useEffect, useRef } from "react";
 import StyledLoader from "./style";
 import gsap from 'gsap';
+import logoImg from '../../assets/logo/white.png';
 
 
-const Loader = ({ logo, texts, setLoader }) => {
-    let introRef = useRef(null);
-    let container = useRef(null);
-
-
-    const completeAnimation = () => setLoader(false);
+const Loader = ({ setLoader }) => {
+    const container = useRef(null);
+    const progressBar = useRef(null);
+    const logoRef = useRef(null);
 
     useEffect(() => {
-        var tl = gsap.timeline({ onComplete: completeAnimation});
+        const tl = gsap.timeline({
+            onComplete: () => {
+                gsap.to(container.current, {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => setLoader(false)
+                });
+            }
+        });
 
-        tl.to(container.current, { opacity: 1, duration: 1 })
-    }, [texts]);
+        tl.fromTo(logoRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+        )
+            .fromTo(progressBar.current,
+                { width: '0%' },
+                { width: '100%', duration: 1.8, ease: 'power1.inOut' },
+                '-=0.2'
+            );
+    }, []);
+
     return (
         <StyledLoader ref={container}>
-            <h1>
-                {texts &&
-                    texts.map((text, key) => (
-                        <span
-                            key={key}
-                            ref={introRef}
-                        >
-                            {text.content[0].value} <strong>{text.content[1].value}</strong>
-                        </span>
-                    ))}
-            </h1>
+            <div className="loader-logo" ref={logoRef}>
+                <img src={logoImg} alt="Logo" />
+            </div>
+            <div className="loader-progress-track">
+                <div className="loader-progress-bar" ref={progressBar} />
+            </div>
         </StyledLoader>
     );
 };

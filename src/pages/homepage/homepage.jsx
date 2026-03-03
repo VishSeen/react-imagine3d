@@ -8,19 +8,19 @@ import HOMEPAGE_QUERY from "../../gql-query/HomepageQuery";
 
 
 const HomePage = () => {
-    const { data } = useQuery(HOMEPAGE_QUERY);
-    const [featuredItems, setFeaturedtems] = useState(null);
-    const [loader, setLoader] = useState(true);
+  const { data } = useQuery(HOMEPAGE_QUERY);
+  const [featuredItems, setFeaturedtems] = useState(null);
+  const [loader, setLoader] = useState(true);
 
-    useEffect(() => {
-        if (data !== null) {
-          setFeaturedtems(data?.homePageCollection?.items[0]?.featuredProjectsCollection?.items);
-        }
-    }, [data])
+  useEffect(() => {
+    if (data != null) {
+      setFeaturedtems(data?.homePageCollection?.items[0]?.featuredProjectsCollection?.items);
+    }
+  }, [data])
 
   return (
     <StyledHomePage className="homepage">
-      {loader ? (<Loader setLoader={setLoader} />) : (<HeroHeader featuredItems={featuredItems} />)}
+      {(loader || !featuredItems) ? (<Loader setLoader={setLoader} />) : (<HeroHeader featuredItems={featuredItems} />)}
     </StyledHomePage>
   );
 };

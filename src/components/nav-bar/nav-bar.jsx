@@ -12,8 +12,8 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
     let tl = gsap.timeline();
 
     tl.fromTo(navRef.current, {
-        opacity: 0
-      }, {
+      opacity: 0
+    }, {
       duration: .5,
       ease: 'power1',
       opacity: 1
@@ -54,7 +54,7 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
         </nav>
 
         <nav className="socials">
-          <span>Social Links</span>
+          <span className="socials-label">Social Links</span>
           <ul>
             <li>
               <a href="#">Facebook</a>
@@ -69,7 +69,7 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
             </li>
           </ul>
 
-          <footer>© 2023 Vishroy Seenarain. All rights reserved.</footer>
+          <footer>© 2023 <a href="https://www.vish.studio/" target='_blank'>VISH Studio</a>. All rights reserved.</footer>
         </nav>
       </div>
     </StyledNav>

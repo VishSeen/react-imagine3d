@@ -8,26 +8,36 @@ const StyledLoader = styled.div`
     bottom: 0;
     height: 100vh;
     width: 100%;
-    z-index: 99;
+    z-index: 999;
     background-color: #0a0a0a;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    h1 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
+    .loader-logo {
+        opacity: 0;
 
-        span {
-            font-weight: 300;
-            font-size: 1.3rem;
+        img {
+            width: 140px;
 
             @media screen and (min-width: 992px) {
-              font-size: 4rem;
+                width: 200px;
             }
+        }
+    }
+
+    .loader-progress-track {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #1e1e1e;
+
+        .loader-progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #fd5a1e;
         }
     }
 `;
