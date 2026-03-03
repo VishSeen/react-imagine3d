@@ -1,50 +1,215 @@
-import { useQuery } from '@apollo/client';
-import React from 'react';
-import NavBarItem from '../../components/nav-bar-item/nav-bar-item';
-import PROJECT_ITEMS_QUERY from '../../gql-query/ProjectItemsQuery';
-import { StyledProjects, StyledTitle } from './style';
-import Title from '../../components/title/title';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import LPLayout from "../../components/layout/lp-layout";
+import { useQuery } from "@apollo/client";
+import PROJECT_ITEMS_QUERY from "../../gql-query/ProjectItemsQuery";
+
+// Styled Components for Projects Page
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  width: 100%;
+  margin-top: 60px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px 40px;
+  }
+`;
+
+const ProjectCard = styled(NavLink)`
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: ${(props) => props.delay || "0s"};
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 125%; /* 4:5 Aspect Ratio */
+    overflow: hidden;
+    background: #1a1a1a;
+    margin-bottom: 20px;
+    border-radius: 24px; /* Rounded corners for project cards */
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+      filter: grayscale(100%) brightness(0.9);
+    }
+
+    /* Overlay for consistent darker tone */
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.2);
+      transition: 0.4s ease;
+    }
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .project-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      color: #666;
+      letter-spacing: 1px;
+    }
+
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      transition: color 0.3s ease;
+      line-height: 1.2;
+    }
+
+    .project-category {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #888;
+      font-weight: 300;
+      margin-top: 5px;
+      text-transform: capitalize;
+    }
+  }
+
+  /* Hover Interaction */
+  &:hover {
+    .image-wrapper {
+      img {
+        transform: scale(1.05);
+        filter: grayscale(0%) brightness(1);
+      }
+      &::after {
+        background: rgba(0,0,0,0);
+      }
+    }
+
+    .project-info h3 {
+      color: #fd5a1e;
+    }
+  }
+`;
+
+const CategoryWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 8px 24px;
+    border-radius: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover, &.active {
+      background: #fff;
+      color: #000;
+    }
+  }
+`;
 
 const Projects = () => {
-  const { data } = useQuery(PROJECT_ITEMS_QUERY);
-  const projectItems = data?.projectItemCollection.items;
+  const { data, loading, error } = useQuery(PROJECT_ITEMS_QUERY);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    if (data && data.projectItemCollection) {
+      setProjects(data.projectItemCollection.items);
+    }
+  }, [data]);
+
+  // Loading / Error handled gracefully or with skeletons could be added here
 
   return (
-    <>
-      <StyledTitle text="Projects" />
+    <LPLayout
+      title="Our Works"
+      subtitle="A curated selection of our finest architectural visualizations and interior designs. Each project represents a unique challenge and a bespoke solution."
+    >
+      <CategoryWrapper>
+        <button className="active">All Projects</button>
+        <button>Interior Design</button>
+        <button>2D Drafting</button>
+        <button>Visualization</button>
+      </CategoryWrapper>
 
-      <StyledProjects className="project-lists">
-        <nav className="projects-list-nav">
-          <ul>
-            {projectItems &&
-              projectItems.map((item, index) => (
-                <>
-                  {/* <NavBarItem
-                    key={index}
-                    index={(index + 1).toString().padStart(2, 0)}
-                    title={item.title}
-                    slug={`/projects/${item.slug}`}
-                    state={{ project: item }}
-                    image={item.image}
-                  /> */}
+      <ProjectGrid>
+        {projects.map((item, index) => (
+          <ProjectCard
+            to={`/projects/${item.slug}`}
+            key={index}
+            delay={`${index * 0.1}s`} // Stagger animation
+          >
+            <div className="image-wrapper">
+              {item.heroImage && (
+                <img src={item.heroImage.url} alt={item.title} loading="lazy" />
+              )}
+            </div>
 
-                  <div className="project-item" key={index}>
-                    <div className="project-image">
-                      <img src={item.heroImage.url} alt="ss" />
-                    </div>
+            <div className="project-info">
+              <div className="project-meta">
+                <span className="project-number">{(index + 1).toString().padStart(2, '0')}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <div className="project-category">
+                {/* Assuming category exists or fallback */}
+                Architectural Visualization
+              </div>
+            </div>
+          </ProjectCard>
+        ))}
 
-                    <div className="project-title">
-                      <h3>
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
-                </>
-              ))}
-          </ul>
-        </nav>
-      </StyledProjects>
-    </>
+        {loading && <p style={{color: '#666'}}>Loading projects...</p>}
+      </ProjectGrid>
+    </LPLayout>
   );
 };
 

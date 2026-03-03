@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, NavLink } from 'react-router-dom';
 import Slider from 'react-slick';
 import { StyledProjectAbout, StyledProjectHero, StyledProjectItem } from './style';
 
@@ -14,8 +14,19 @@ const sliderSettings = {
   infinite: true,
   slidesToShow: 3,
   swipeToSlide: true,
-  speed: 500,
-  autoplay: true
+  speed: 600,
+  autoplay: true,
+  dots: true,
+  responsive: [
+    {
+      breakpoint: 992,
+      settings: { slidesToShow: 2 }
+    },
+    {
+      breakpoint: 600,
+      settings: { slidesToShow: 1, centerMode: false }
+    }
+  ]
 };
 
 const CommonSlider = ({ images }) => {
@@ -30,6 +41,7 @@ const CommonSlider = ({ images }) => {
             <img
               src={image.url}
               alt="Slider"
+              loading="lazy"
             />
           </div>
         ))}
@@ -40,15 +52,34 @@ const CommonSlider = ({ images }) => {
 const HeroSection = ({ heroImage, title }) => {
   return (
     <StyledProjectHero>
-      <div className="project-item-hero">
-        <div className="project-item-hero-image">
-          <img
-            src={heroImage}
-            alt="Hero project"
-          />
+      <div className="hero-inner">
+        <div className="hero-top-bar">
+          <NavLink to="/projects">Works</NavLink>
+          <span className="breadcrumb-sep">/</span>
+          <span className="breadcrumb-current">{title}</span>
         </div>
-        <div className="project-item-hero-title">
+
+        <div className="hero-title">
           <h1>{title}</h1>
+        </div>
+
+        <div className="hero-image">
+          <img src={heroImage} alt={title} />
+        </div>
+
+        <div className="hero-meta">
+          <div className="meta-item">
+            <span className="meta-label">Category</span>
+            <span className="meta-value">Architecture</span>
+          </div>
+          <div className="meta-item">
+            <span className="meta-label">Type</span>
+            <span className="meta-value">Visualization</span>
+          </div>
+          <div className="meta-item">
+            <span className="meta-label">Studio</span>
+            <span className="meta-value">Imagine 3D</span>
+          </div>
         </div>
       </div>
     </StyledProjectHero>
@@ -58,28 +89,24 @@ const HeroSection = ({ heroImage, title }) => {
 const AboutSection = ({ description }) => {
   return (
     <StyledProjectAbout className="block-text-about">
-      <h2>About the project</h2>
+      <div className="about-label">
+        <span className="label-tag">About the Project</span>
+        <div className="label-line" />
+      </div>
       <p>{description}</p>
     </StyledProjectAbout>
   );
 };
 
-const InteriorSection = ({ description, images }) => {
+const GallerySection = ({ tag, title, description, images }) => {
+  if (!images || images.length === 0) return null;
   return (
     <div className="container">
-      <h2>Interior</h2>
-      <p>{description}</p>
-      <div className="slides">
-        <CommonSlider images={images} />
+      <div className="section-header">
+        <span className="section-tag">{tag}</span>
+        <div className="section-line" />
       </div>
-    </div>
-  );
-};
-
-const ExteriorSection = ({ description, images }) => {
-  return (
-    <div className="container">
-      <h2>Exterior</h2>
+      <h2>{title}</h2>
       <p>{description}</p>
       <div className="slides">
         <CommonSlider images={images} />
@@ -99,8 +126,6 @@ const ProjectItem = () => {
   });
 
   useEffect(() => {
-    // If the state is null, e.g, we are navigating directly to the route
-    // We ask Contentful to fetch the project by its slug
     if (!location.state || !location.state.project) {
       data && setProject(data.projectItemCollection.items[0]);
     } else {
@@ -110,28 +135,38 @@ const ProjectItem = () => {
   }, [location.state, data]);
 
   if (!project) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ background: '#0b0b0b', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.3)', fontFamily: 'Syne', letterSpacing: '3px', textTransform: 'uppercase', fontSize: '13px' }}>
+        Loading...
+      </div>
+    );
   }
 
   return (
-    <>
-      <StyledProjectItem>
-          <HeroSection
-            heroImage={project.heroImage.url}
-            title={project.title}
-          />
-          <AboutSection description={project.projectDescription} />
-          <InteriorSection
-            description={project.interiorViewsDescription}
-            images={project.interiorViewsCollection.items}
-          />
-          <ExteriorSection
-            description={project.exteriorViewsDescription}
-            images={project.exteriorViewsCollection.items}
-          />
-        {/* </div> */}
-      </StyledProjectItem>
-    </>
+    <StyledProjectItem>
+      <HeroSection
+        heroImage={project.heroImage.url}
+        title={project.title}
+      />
+
+      <div className="section-divider" />
+
+      <AboutSection description={project.projectDescription} />
+
+      <GallerySection
+        tag="01"
+        title="Interior"
+        description={project.interiorViewsDescription}
+        images={project.interiorViewsCollection.items}
+      />
+
+      <GallerySection
+        tag="02"
+        title="Exterior"
+        description={project.exteriorViewsDescription}
+        images={project.exteriorViewsCollection.items}
+      />
+    </StyledProjectItem>
   );
 };
 

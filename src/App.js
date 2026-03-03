@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 
 
 import NavBar from './components/nav-bar/nav-bar';
@@ -15,9 +15,16 @@ import HomePage from './pages/homepage/homepage';
 import ProjectItem from './pages/project-item/project-item';
 import Projects from './pages/projects/projects';
 import AboutUs from './pages/about-us/about-us';
+import Footer from './components/footer/footer';
 
 // TODO: to add a loader screen so that when all data is received, we display the required
 // page. Loader screen should contain client logo. A global state/context can be used for this.
+
+function ConditionalFooter() {
+  const location = useLocation();
+  if (location.pathname === '/') return null;
+  return <Footer />;
+}
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,13 +59,8 @@ function App() {
             element={<AboutUs />}
           />
         </Routes>
+        <ConditionalFooter />
       </Router>
-
-      {/* {loading ? <p>Loading...</p> : data?.projectPage.title} */}
-
-      {/* <footer>
-				© 2023 Vishroy Seenarain. All rights reserved.
-			</footer> */}
     </div>
   );
 }

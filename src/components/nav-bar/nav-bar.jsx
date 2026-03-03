@@ -42,7 +42,7 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
           <div className="contact-block">
             <span className="socials-label">Get in touch</span>
             <a href="mailto:hello@vish.studio" className="email-link">
-              <span className={config.icons}>mail</span>
+              <span className="material-symbols-rounded">mail</span>
               <span>hello@vish.studio</span>
             </a>
           </div>
