@@ -2,6 +2,9 @@
   "name": "react-imagine3d",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@apollo/client": "^3.8.10",
     "@contentful/rich-text-react-renderer": "^16.1.6",
