@@ -1,30 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import NavBarItem from '../nav-bar-item/nav-bar-item';
 import Title from '../title/title';
 import StyledNav from './style';
-import gsap from 'gsap';
-
 
 const NavBar = ({ isOpened, onOpenMenu }) => {
-  const navRef = useRef(null)
-
-  useEffect(() => {
-    let tl = gsap.timeline();
-
-    tl.fromTo(navRef.current, {
-      opacity: 0
-    }, {
-      duration: .5,
-      ease: 'power1',
-      opacity: 1
-    })
-  }, [isOpened])
-
-
   return (
-    <StyledNav ref={navRef} className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
-      <img />
+    <StyledNav className={`nav-bar ${isOpened ? 'menu-opened' : ''}`}>
 
+      {/* Background Title "EXPLORE" */}
       <Title text="Explore" />
 
       <div className="nav-contents">
@@ -69,7 +52,7 @@ const NavBar = ({ isOpened, onOpenMenu }) => {
             </li>
           </ul>
 
-          <footer>© 2023 <a href="https://www.vish.studio/" target='_blank'>VISH Studio</a>. All rights reserved.</footer>
+          <footer>© 2023 <a href="https://www.vish.studio/" target='_blank' rel="noreferrer">VISH Studio</a>. All rights reserved.</footer>
         </nav>
       </div>
     </StyledNav>
