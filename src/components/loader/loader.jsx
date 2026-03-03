@@ -31,6 +31,7 @@ const Loader = ({ setLoader }) => {
             );
 
         return () => tl.kill();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

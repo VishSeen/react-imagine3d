@@ -3,7 +3,6 @@ import { gsap } from '../../utils/animations';
 import NavBarItem from '../nav-bar-item/nav-bar-item';
 import Title from '../title/title';
 import StyledNav from './style';
-import config from '../../config.json';
 
 
 const NavBar = ({ isOpened, onOpenMenu, socials = [] }) => {
