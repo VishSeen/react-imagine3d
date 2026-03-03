@@ -92,6 +92,14 @@ const ProjectCard = styled(NavLink)`
       letter-spacing: 1px;
     }
 
+    .project-type-badge {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      color: #fd5a1e;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
     h3 {
       font-family: 'Syne', sans-serif;
       font-size: 24px;
@@ -158,8 +166,9 @@ const CategoryWrapper = styled.div`
 `;
 
 const Projects = () => {
-  const { data, loading, error } = useQuery(PROJECT_ITEMS_QUERY);
+  const { data, loading } = useQuery(PROJECT_ITEMS_QUERY);
   const [projects, setProjects] = useState([]);
+  const [activeFilter, setActiveFilter] = useState('All Projects');
 
   useEffect(() => {
     if (data && data.projectItemCollection) {
@@ -167,7 +176,14 @@ const Projects = () => {
     }
   }, [data]);
 
-  // Loading / Error handled gracefully or with skeletons could be added here
+  // Derive unique project types for filter buttons
+  const filterOptions = ['All Projects', ...Array.from(
+    new Set(projects.map(p => p.projectType).filter(Boolean))
+  )];
+
+  const filtered = activeFilter === 'All Projects'
+    ? projects
+    : projects.filter(p => p.projectType === activeFilter);
 
   return (
     <LPLayout
@@ -175,18 +191,23 @@ const Projects = () => {
       subtitle="A curated selection of our finest architectural visualizations and interior designs. Each project represents a unique challenge and a bespoke solution."
     >
       <CategoryWrapper>
-        <button className="active">All Projects</button>
-        <button>Interior Design</button>
-        <button>2D Drafting</button>
-        <button>Visualization</button>
+        {filterOptions.map(option => (
+          <button
+            key={option}
+            className={activeFilter === option ? 'active' : ''}
+            onClick={() => setActiveFilter(option)}
+          >
+            {option}
+          </button>
+        ))}
       </CategoryWrapper>
 
       <ProjectGrid>
-        {projects.map((item, index) => (
+        {filtered.map((item, index) => (
           <ProjectCard
             to={`/projects/${item.slug}`}
-            key={index}
-            delay={`${index * 0.1}s`} // Stagger animation
+            key={item.slug || index}
+            delay={`${index * 0.1}s`}
           >
             <div className="image-wrapper">
               {item.heroImage && (
@@ -197,17 +218,19 @@ const Projects = () => {
             <div className="project-info">
               <div className="project-meta">
                 <span className="project-number">{(index + 1).toString().padStart(2, '0')}</span>
+                {item.projectType && (
+                  <span className="project-type-badge">{item.projectType}</span>
+                )}
               </div>
               <h3>{item.title}</h3>
               <div className="project-category">
-                {/* Assuming category exists or fallback */}
-                Architectural Visualization
+                {item.category || item.projectType || 'Architectural Visualization'}
               </div>
             </div>
           </ProjectCard>
         ))}
 
-        {loading && <p style={{color: '#666'}}>Loading projects...</p>}
+        {loading && <p style={{ color: '#666' }}>Loading projects...</p>}
       </ProjectGrid>
     </LPLayout>
   );

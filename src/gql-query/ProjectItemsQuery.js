@@ -7,6 +7,8 @@ const PROJECT_ITEMS_QUERY = gql`
         title
         slug
         projectDescription
+        category
+        projectType
         heroImage {
           url
         }

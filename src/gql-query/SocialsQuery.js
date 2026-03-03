@@ -1,25 +1,15 @@
 import { gql } from '@apollo/client';
 
-const SociALS_QUERY = gql`
+const SOCIALS_QUERY = gql`
   query GetSocials {
-    projectItemCollection(limit: 20) {
+    socialsCollection(limit: 1) {
       items {
         title
-        slug
-        projectDescription
-        heroImage {
-          url
-        }
-        exteriorViewsDescription
-        exteriorViewsCollection {
+        linksCollection {
           items {
+            title
             url
-          }
-        }
-        interiorViewsDescription
-        interiorViewsCollection {
-          items {
-            url
+            newTab
           }
         }
       }
@@ -27,4 +17,4 @@ const SociALS_QUERY = gql`
   }
 `;
 
-export default PROJECT_ITEMS_QUERY;
+export default SOCIALS_QUERY;

@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.8.10",
+    "@contentful/rich-text-react-renderer": "^16.1.6",
+    "@contentful/rich-text-types": "^17.2.5",
     "@gsap/react": "^2.1.0",
     "dotenv": "^16.3.2",
     "gh-pages": "^6.1.1",

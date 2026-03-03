@@ -113,7 +113,14 @@ const StyledNav = styled.div`
         color: #ddd;
         text-decoration: none;
         transition: 0.3s ease;
-        margin-top: -1rem; /* Visual balance against the label margin */
+
+        & + .email-link {
+          margin-top: 1rem;
+        }
+
+        &:first-of-type {
+          margin-top: -1rem; /* Visual balance against the label margin */
+        }
 
         span:first-child {
           margin-right: 12px;

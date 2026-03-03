@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { useQuery } from '@apollo/client';
+import { useGSAP } from '@gsap/react';
+import { gsap } from '../../utils/animations';
 import LPLayout from '../../components/layout/lp-layout';
+import ABOUT_PAGE_QUERY from '../../gql-query/AboutPageQuery';
 
 const AboutContainer = styled.div`
   display: flex;
@@ -97,50 +101,64 @@ const AboutContainer = styled.div`
 `;
 
 const AboutUs = () => {
+  const { data, loading } = useQuery(ABOUT_PAGE_QUERY);
+  const containerRef = useRef(null);
+  const aboutPage = data?.aboutPageCollection?.items?.[0];
+
+  const description = aboutPage?.aboutDescription || '';
+  const infoCards = aboutPage?.aboutInfoCardListCollection?.items || [];
+  const services = aboutPage?.listOfServicesCollection?.items || [];
+  const outroImage = aboutPage?.outroImage;
+
+  useGSAP(() => {
+    const el = containerRef.current;
+    if (!el || !aboutPage) return;
+
+    const stats = el.querySelectorAll('.stat-item');
+    const sects = el.querySelectorAll('.section');
+    const banner = el.querySelector('.image-banner');
+    const trig = { start: 'top 85%' };
+
+    if (stats.length) gsap.fromTo(stats, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: stats[0], ...trig } });
+    if (sects.length) gsap.fromTo(sects, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, stagger: 0.15, ease: 'power2.out', scrollTrigger: { trigger: sects[0], ...trig } });
+    if (banner) gsap.fromTo(banner, { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: banner, start: 'top 88%' } });
+  }, { scope: containerRef, dependencies: [aboutPage] });
+
+  if (loading) return null;
+
   return (
     <LPLayout
       title="About Us"
-      subtitle="Designing spaces that live. Imagine 3D is a premier interior design and architectural visualization studio bridging the gap between imagination and reality."
+      subtitle={description}
     >
-      <AboutContainer>
-        <div className="stats-grid">
-          <div className="stat-item">
-            <h4>15+</h4>
-            <p>Years Experience</p>
+      <AboutContainer ref={containerRef}>
+        {infoCards.length > 0 && (
+          <div className="stats-grid">
+            {infoCards.map((card, i) => (
+              <div className="stat-item" key={i}>
+                <h4>{card.infoCardCount}</h4>
+                <p>{card.title}</p>
+              </div>
+            ))}
           </div>
-          <div className="stat-item">
-            <h4>200+</h4>
-            <p>Projects Done</p>
-          </div>
-          <div className="stat-item">
-            <h4>50+</h4>
-            <p>Awards Won</p>
-          </div>
-          <div className="stat-item">
-            <h4>12</h4>
-            <p>Design Experts</p>
-          </div>
-        </div>
+        )}
 
-        <div className="content-grid">
-          <div className="section">
-            <h3>Interior Design</h3>
-            <p>
-              We believe valid design serves the human experience. Our interior concepts focus on optimal spatial flow, sustainable materiality, and personalized aesthetics. Whether residential or commercial, we curate environments that are both functional and inspiring.
-            </p>
+        {services.length > 0 && (
+          <div className="content-grid">
+            {services.map((service, i) => (
+              <div className="section" key={i}>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </div>
+            ))}
           </div>
+        )}
 
-          <div className="section">
-            <h3>2D Planning & Drafting</h3>
-            <p>
-              Precision is our language. Our 2D services provide the technical backbone for any successful build. From detailed floor plans to electrical layouts and elevations, we deliver clear, accurate blueprints that ensure seamless execution on site.
-            </p>
+        {outroImage && (
+          <div className="image-banner">
+            <img src={outroImage.url} alt={outroImage.title || 'About banner'} />
           </div>
-        </div>
-
-        <div className="image-banner">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop" alt="Interior Design Studio" />
-        </div>
+        )}
       </AboutContainer>
     </LPLayout>
   )
